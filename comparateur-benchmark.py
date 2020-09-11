@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import streamlit as st
 import requests
 import time
@@ -232,4 +233,3 @@ if sport == "Entrée manuelle (1 compétition)":
 
         bench_final.columns = [nom_competition]
         st.table(bench_final)
-
