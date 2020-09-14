@@ -73,7 +73,6 @@ betclic = "Betclic"
 operateurs = [winamax, unibet, betclic, parions_sports, zebet, pmu, bwin, poker_stars, vbet, netbet]
 
 
-@st.cache
 def script_1_N_2(nb_match, liste_competition):
     global trj_moyenne
     bench_final = pd.DataFrame(index=[i for i in operateurs])
@@ -115,7 +114,6 @@ def script_1_N_2(nb_match, liste_competition):
 
     return bench_final
 
-@st.cache
 def script_1_2(nb_match, liste_competition) :
     global trj_moyenne
     bench_final = pd.DataFrame(index=[i for i in operateurs])
@@ -173,7 +171,7 @@ def choix_final_url(initial, final, url):
     return final
 
 
-sport = st.sidebar.radio('Sports', ('Football', 'Tennis', 'Rugby', 'Handball', 'Hockey', 'Entrée manuelle (1 compétition)'))
+sport = st.sidebar.radio('Sports', ('Football', 'Tennis', 'Rugby', 'Handball', 'Hockey', 'Entrée manuelle (1 compétition)', 'Entrée manuelle (+ d\'1 compétition)'))
 
 if sport == 'Football':
     st.markdown(
@@ -290,3 +288,165 @@ if sport == "Entrée manuelle (1 compétition)":
 
         bench_final.columns = [nom_competition]
         st.table(bench_final)
+
+
+if sport == 'Entrée manuelle (+ d\'1 compétition)' :
+
+    nb_competition = st.selectbox('Combien de compétitions à bencher ?', ('2', '3', '4', '5', '6'))
+
+    if nb_competition == '2' :
+        entree_manuelle = []
+        url_1 = st.text_input('URL n°1')
+        entree_manuelle.append(url_1)
+        nom_competition_1 = st.text_input("Nom Compétition 1")
+        url_2 = st.text_input('URL N°2')
+        entree_manuelle.append(url_2)
+        nom_competition_2 = st.text_input("Nom Compétition 2")
+        nb_rencontres = st.slider('Combien de rencontres à prendre en compte maximum ?', 0, 20, 2)
+        choix_issue = st.radio('Quelles issues possibles ?', ('1-2', '1-N-2'))
+        lancement = st.button('Lancez le benchmark')
+        if lancement:
+            if choix_issue == '1-2':
+                bench_final = script_1_2(nb_rencontres, entree_manuelle)
+            else:
+                bench_final = script_1_N_2(nb_rencontres, entree_manuelle)
+            bench_final.columns = [nom_competition_1, nom_competition_2]
+            bench_final['moyenne'] = 1
+
+            for i in range(10):
+                bench_final.iloc[i, -1] = "{:.2f}".format((float(bench_final.iloc[i, 0]) + float(bench_final.iloc[i,1]))/2)
+            st.table(bench_final)
+
+
+    if nb_competition == '3' :
+        entree_manuelle = []
+        url_1 = st.text_input('URL n°1')
+        entree_manuelle.append(url_1)
+        nom_competition_1 = st.text_input("Nom Compétition 1")
+        url_2 = st.text_input('URL N°2')
+        entree_manuelle.append(url_2)
+        nom_competition_2 = st.text_input("Nom Compétition 2")
+        url_3 = st.text_input('URL n°3')
+        entree_manuelle.append(url_3)
+        nom_competition_3 = st.text_input("Nom Compétition 3")
+        nb_rencontres = st.slider('Combien de rencontres à prendre en compte maximum ?', 0, 20, 2)
+        choix_issue = st.radio('Quelles issues possibles ?', ('1-2', '1-N-2'))
+        lancement = st.button('Lancez le benchmark')
+        if lancement:
+            if choix_issue == '1-2':
+                bench_final = script_1_2(nb_rencontres, entree_manuelle)
+            else:
+                bench_final = script_1_N_2(nb_rencontres, entree_manuelle)
+            bench_final.columns = [nom_competition_1, nom_competition_2, nom_competition_3]
+            bench_final['moyenne'] = 1
+
+            for i in range(10):
+                bench_final.iloc[i, -1] = "{:.2f}".format(
+                    (float(bench_final.iloc[i, 0]) + float(bench_final.iloc[i, 1]) + float(bench_final.iloc[i,2])) / 3)
+            st.table(bench_final)
+
+
+
+
+    if nb_competition == '4' :
+        entree_manuelle = []
+        url_1 = st.text_input('URL n°1')
+        entree_manuelle.append(url_1)
+        nom_competition_1 = st.text_input("Nom Compétition 1")
+        url_2 = st.text_input('URL N°2')
+        entree_manuelle.append(url_2)
+        nom_competition_2 = st.text_input("Nom Compétition 2")
+        url_3 = st.text_input('URL n°3')
+        entree_manuelle.append(url_3)
+        nom_competition_3 = st.text_input("Nom Compétition 3")
+        url_4 = st.text_input('URL n°4')
+        entree_manuelle.append(url_4)
+        nom_competition_4 = st.text_input("Nom Compétition 4")
+        nb_rencontres = st.slider('Combien de rencontres à prendre en compte maximum ?', 0, 20, 2)
+        choix_issue = st.radio('Quelles issues possibles ?', ('1-2', '1-N-2'))
+        lancement = st.button('Lancez le benchmark')
+        if lancement:
+            if choix_issue == '1-2':
+                bench_final = script_1_2(nb_rencontres, entree_manuelle)
+            else:
+                bench_final = script_1_N_2(nb_rencontres, entree_manuelle)
+            bench_final.columns = [nom_competition_1, nom_competition_2, nom_competition_3,nom_competition_4]
+            bench_final['moyenne'] = 1
+
+            for i in range(10):
+                bench_final.iloc[i, -1] = "{:.2f}".format(
+                    (float(bench_final.iloc[i, 0]) + float(bench_final.iloc[i, 1]) + float(bench_final.iloc[i,2]) +
+                     float(bench_final.iloc[i,3])) / 4)
+            st.table(bench_final)
+
+    if nb_competition == '5':
+        entree_manuelle = []
+        url_1 = st.text_input('URL n°1')
+        entree_manuelle.append(url_1)
+        nom_competition_1 = st.text_input("Nom Compétition 1")
+        url_2 = st.text_input('URL N°2')
+        entree_manuelle.append(url_2)
+        nom_competition_2 = st.text_input("Nom Compétition 2")
+        url_3 = st.text_input('URL n°3')
+        entree_manuelle.append(url_3)
+        nom_competition_3 = st.text_input("Nom Compétition 3")
+        url_4 = st.text_input('URL n°4')
+        entree_manuelle.append(url_4)
+        nom_competition_4 = st.text_input("Nom Compétition 4")
+        url_5 = st.text_input('URL n°5')
+        entree_manuelle.append(url_5)
+        nom_competition_5 = st.text_input("Nom Compétition 5")
+        nb_rencontres = st.slider('Combien de rencontres à prendre en compte maximum ?', 0, 20, 2)
+        choix_issue = st.radio('Quelles issues possibles ?', ('1-2', '1-N-2'))
+        lancement = st.button('Lancez le benchmark')
+        if lancement:
+            if choix_issue == '1-2':
+                bench_final = script_1_2(nb_rencontres, entree_manuelle)
+            else:
+                bench_final = script_1_N_2(nb_rencontres, entree_manuelle)
+            bench_final.columns = [nom_competition_1, nom_competition_2, nom_competition_3, nom_competition_4, nom_competition_5]
+            bench_final['moyenne'] = 1
+
+            for i in range(10):
+                bench_final.iloc[i, -1] = "{:.2f}".format((float(bench_final.iloc[i, 0]) + float(bench_final.iloc[i, 1])
+                                                    + float(bench_final.iloc[i,2]) + float(bench_final.iloc[i,3]) +
+                                                           float(bench_final.iloc[i,4])) / 5)
+            st.table(bench_final)
+
+    if nb_competition == '6':
+        entree_manuelle = []
+        url_1 = st.text_input('URL n°1')
+        entree_manuelle.append(url_1)
+        nom_competition_1 = st.text_input("Nom Compétition 1")
+        url_2 = st.text_input('URL N°2')
+        entree_manuelle.append(url_2)
+        nom_competition_2 = st.text_input("Nom Compétition 2")
+        url_3 = st.text_input('URL n°3')
+        entree_manuelle.append(url_3)
+        nom_competition_3 = st.text_input("Nom Compétition 3")
+        url_4 = st.text_input('URL n°4')
+        entree_manuelle.append(url_4)
+        nom_competition_4 = st.text_input("Nom Compétition 4")
+        url_5 = st.text_input('URL n°5')
+        entree_manuelle.append(url_5)
+        nom_competition_5 = st.text_input("Nom Compétition 5")
+        url_6 = st.text_input('URL n°6')
+        entree_manuelle.append(url_6)
+        nom_competition_6 = st.text_input("Nom Compétition 6")
+        nb_rencontres = st.slider('Combien de rencontres à prendre en compte maximum ?', 0, 20, 2)
+        choix_issue = st.radio('Quelles issues possibles ?', ('1-2', '1-N-2'))
+        lancement = st.button('Lancez le benchmark')
+        if lancement:
+            if choix_issue == '1-2':
+                bench_final = script_1_2(nb_rencontres, entree_manuelle)
+            else:
+                bench_final = script_1_N_2(nb_rencontres, entree_manuelle)
+            bench_final.columns = [nom_competition_1, nom_competition_2, nom_competition_3, nom_competition_4,
+                                   nom_competition_5, nom_competition_6]
+
+            bench_final['moyenne'] = 1
+
+            for i in range(10):
+                bench_final.iloc[i, -1] = "{:.2f}".format((float(bench_final.iloc[i, 0]) + float(bench_final.iloc[i, 1])
+                                                     + float(bench_final.iloc[i, 2]) + float(bench_final.iloc[i, 3]) +
+                                                     float(bench_final.iloc[i, 4]) + float(bench_final.iloc[i,5])) / 6)
