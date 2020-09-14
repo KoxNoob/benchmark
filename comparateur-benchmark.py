@@ -19,6 +19,7 @@ bundesliga_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Allema
 premier_league_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Angleterre-Premier-League-ed2'
 serie_A_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Italie-Serie-A-ed5'
 coupe_allemagne_url = "http://www.comparateur-de-cotes.fr/comparateur/football/Coupe-d'Allemagne-ed23"
+carabao_cup_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Angleterre-EFL-Cup-ed21'
 
 
 # Compétition tennis
@@ -28,6 +29,8 @@ us_open_dh_url = 'http://www.comparateur-de-cotes.fr/comparateur/tennis/US-Open-
 us_opendf_url = 'http://www.comparateur-de-cotes.fr/comparateur/tennis/US-Open-(Doubles-F)-ed1295'
 kitzbuhel_url = 'http://www.comparateur-de-cotes.fr/comparateur/tennis/Kitzb%C3%BChel-(250-Series)-ed1133'
 istanbul_url = 'http://www.comparateur-de-cotes.fr/comparateur/tennis/Istanbul-(Intl.-Events)-ed895'
+rome_atp_url = 'http://www.comparateur-de-cotes.fr/comparateur/tennis/Rome-(Masters)-ed819'
+rome_wta_url = 'http://www.comparateur-de-cotes.fr/comparateur/tennis/Rome-(Prem.-Events)-ed883'
 
 # Compétition rugby
 champions_cup_url = 'http://www.comparateur-de-cotes.fr/comparateur/rugby/Champions-Cup-ed569'
@@ -170,7 +173,7 @@ def choix_final_url(initial, final, url):
     return final
 
 
-sport = st.sidebar.radio('Sports', ('Football', 'Tennis', 'Entrée manuelle (1 compétition)'))
+sport = st.sidebar.radio('Sports', ('Football', 'Tennis', 'Rugby', 'Handball', 'Hockey', 'Entrée manuelle (1 compétition)'))
 
 if sport == 'Football':
     st.markdown(
@@ -181,15 +184,13 @@ if sport == 'Football':
     nb_rencontres = st.slider('Combien de rencontres à prendre en compte maximum ?', 0, 30, 2)
     lancement = st.button('Lancez le benchmark')
     competition_foot_initial = [ligue_1_url, ligue_2_url, liga_url, serie_A_url, bundesliga_url, premier_league_url,
-                                champions_league_url, europa_league_url, ligue_des_nations_url,
-                                qualif_euro2021_moins21_url,
+                                champions_league_url, europa_league_url, carabao_cup_url,
                                 coupe_allemagne_url]
 
     if lancement:
         bench_final = script_1_N_2(nb_rencontres,competition_foot_initial)
         bench_final.columns = ['Ligue 1', 'Ligue 2', 'Liga', 'Bundesliga', 'Serie A', 'Premier League',
-                               'Ligue des Nations',
-                               'Qualif Euro 2021 (-21 ans)', 'Champions League', 'Europa League', 'Coupe d\'Allemagne']
+                               'Carabao Cup', 'Champions League', 'Europa League', 'Coupe d\'Allemagne']
         st.table(bench_final)
 
 
@@ -201,12 +202,60 @@ if sport == 'Tennis':
     # Benchmark
     nb_rencontres = st.slider('Combien de rencontres à prendre en compte maximum ?', 0, 20, 2)
     lancement = st.button('Lancez le benchmark')
-    competition_tennis_initial = [us_open_hommes_url, us_open_femmes_url, us_open_dh_url, us_opendf_url, kitzbuhel_url, istanbul_url]
+    competition_tennis_initial = [rome_atp_url, rome_wta_url]
 
     if lancement:
         bench_final = script_1_2(nb_rencontres, competition_tennis_initial)
-        bench_final.columns = ['US Open Hommes', 'US Open Femmes', 'US Open Double Hommes', 'US Open Double Femmes',
-                               'Kitzbuhel', 'Istanbul']
+        bench_final.columns = ['Rome ATP', 'Rome WTA']
+        st.table(bench_final)
+
+
+if sport == 'Rugby':
+    st.markdown(
+        "<h3 style='text-align: center; color: grey; size = 0'>Benchmark Rugby</h3>",
+        unsafe_allow_html=True)
+
+    # Benchmark
+    nb_rencontres = st.slider('Combien de rencontres à prendre en compte maximum ?', 0, 20, 2)
+    lancement = st.button('Lancez le benchmark')
+    competition_tennis_initial = [top_14_url, champions_cup_url]
+
+    if lancement:
+        bench_final = script_1_N_2(nb_rencontres, competition_tennis_initial)
+        bench_final.columns = ['Top14', 'Champions Cup']
+        st.table(bench_final)
+
+
+
+if sport == 'Handball':
+    st.markdown(
+        "<h3 style='text-align: center; color: grey; size = 0'>Benchmark Handball</h3>",
+        unsafe_allow_html=True)
+
+    # Benchmark
+    nb_rencontres = st.slider('Combien de rencontres à prendre en compte maximum ?', 0, 20, 2)
+    lancement = st.button('Lancez le benchmark')
+    competition_tennis_initial = [lidl_starligue_url, liga_asobal_url]
+
+    if lancement:
+        bench_final = script_1_N_2(nb_rencontres, competition_tennis_initial)
+        bench_final.columns = ['Lidl Starligue', 'Liga Asobal']
+        st.table(bench_final)
+
+
+if sport == 'Hockey':
+    st.markdown(
+        "<h3 style='text-align: center; color: grey; size = 0'>Benchmark Hockey</h3>",
+        unsafe_allow_html=True)
+
+    # Benchmark
+    nb_rencontres = st.slider('Combien de rencontres à prendre en compte maximum ?', 0, 20, 2)
+    lancement = st.button('Lancez le benchmark')
+    competition_tennis_initial = [nhl_url, khl_url]
+
+    if lancement:
+        bench_final = script_1_N_2(nb_rencontres, competition_tennis_initial)
+        bench_final.columns = ['NHL', 'KHL']
         st.table(bench_final)
 
 if sport == "Entrée manuelle (1 compétition)":
@@ -215,7 +264,8 @@ if sport == "Entrée manuelle (1 compétition)":
         unsafe_allow_html=True)
 
     st.write(
-        "Afin d'effectuer du benchmark sur une compétition qui ne serait pas encore renseignée, vous pouvez utiliser cette section.")
+        "Afin d'effectuer du benchmark sur une compétition qui ne serait pas encore renseignée, vous pouvez \
+        utiliser cette section.")
     st.write("Le benchmark se fait à partir du site http://www.comparateur-de-cotes.fr/")
     st.write("Dans le premier champ, renseignez l'url de la compétition du site comparateur-de-cote. Donnez un nom à \
     cette compétition. Ensuite sélectionnez le nombre de matchs sur lequel vous voulez faire la moyenne des TRJ. Enfin \
