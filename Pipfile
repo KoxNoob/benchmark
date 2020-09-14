@@ -8,8 +8,8 @@ verify_ssl = true
 [packages]
 streamlit = "*"
 pandas = "*"
-requests = "*"
 bs4 = "*"
+requests = "*"
 
 [requires]
 python_version = "3.7"
