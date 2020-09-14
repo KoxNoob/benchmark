@@ -214,6 +214,14 @@ if sport == "Entrée manuelle (1 compétition)":
         "<h3 style='text-align: center; color: grey; size = 0'>Benchmark 1 Compétition Manuelle</h3>",
         unsafe_allow_html=True)
 
+    st.write(
+        "Afin d'effectuer du benchmark sur une compétition qui ne serait pas encore renseignée, vous pouvez utiliser cette section.")
+    st.write("Le benchmark se fait à partir du site http://www.comparateur-de-cotes.fr/")
+    st.write("Dans le premier champ, renseignez l'url de la compétition du site comparateur-de-cote. Donnez un nom à \
+    cette compétition. Ensuite sélectionnez le nombre de matchs sur lequel vous voulez faire la moyenne des TRJ. Enfin \
+    renseignez le nombre d'issues possibles et cliquez sur \"Lancer le benchmark\"")
+
+
     entree_manuelle = []
     url = st.text_input('Collez l\'url ici')
     entree_manuelle.append(url)
