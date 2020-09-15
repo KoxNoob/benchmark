@@ -8,7 +8,6 @@ headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:55.0)
 
 # Compétition football
 ligue_des_nations_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Ligue-des-Nations-ed2195'
-
 qualif_euro2021_moins21_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Qualif.-Euro-2021-(-21)-ed1039'
 champions_league_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Ligue-des-Champions-ed7'
 europa_league_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Ligue-Europa-ed1181'
@@ -20,7 +19,31 @@ premier_league_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/An
 serie_A_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Italie-Serie-A-ed5'
 coupe_allemagne_url = "http://www.comparateur-de-cotes.fr/comparateur/football/Coupe-d'Allemagne-ed23"
 carabao_cup_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Angleterre-EFL-Cup-ed21'
+jupiler_league = 'http://www.comparateur-de-cotes.fr/comparateur/football/Belgique-Jupiler-League-ed11'
+super_league_suisse = 'http://www.comparateur-de-cotes.fr/comparateur/football/Suisse-Super-League-ed12'
+liga_nos = 'http://www.comparateur-de-cotes.fr/comparateur/football/Portugal-Liga-NOS-ed15'
+bundesliga_2_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Allemagne-Bundesliga-2-ed44'
+championship_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Angleterre-Championship-ed13'
+mls_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Etats-Unis-MLS-ed60'
+premier_league_russie_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Russie-Premier-Ligue-ed51'
+premier_league_ukraine_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Ukraine-Premier-League-ed61'
+eredivisie_pb_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Pays-Bas-Eredivisie-ed10'
+super_lig_turquie_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Turquie-Super-Lig-ed50'
+bundesliga_autriche_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Autriche-Bundesliga-ed17'
+superligue_danemark_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Danemark-Superligue-ed26'
+ecosse_premierleague_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Ecosse-Premier-League-ed120'
 
+
+competition_foot_url = [ligue_1_url, ligue_2_url, liga_url, serie_A_url, bundesliga_url, premier_league_url,
+                            champions_league_url, europa_league_url, coupe_allemagne_url, carabao_cup_url, jupiler_league,
+                        super_league_suisse, liga_nos, bundesliga_2_url, championship_url, mls_url, premier_league_russie_url,
+                        premier_league_ukraine_url, eredivisie_pb_url, super_lig_turquie_url, bundesliga_autriche_url,
+                        superligue_danemark_url, ecosse_premierleague_url]
+
+name_foot = ['Ligue 1', 'Ligue 2', 'Liga', 'Serie_A', 'Bundesliga', 'Premier League', 'Champions League', 'Europa League',
+             'Carabao Cup', 'Coupe d\'Allemagne', 'Jupiler League', 'Super League Suisse','Liga Nos', 'Bundesliga 2',
+             'Championship', 'MLS', 'Premier League Russie', 'Premier League Ukraine', 'Eredivisie Pays-Bas', 'Super Lig \
+             Turquie', 'Bundesliga Autriche', 'Superligue Danemark', 'Ecosse Premierleague']
 
 # Compétition tennis
 us_open_hommes_url = 'http://www.comparateur-de-cotes.fr/comparateur/tennis/US-Open-(Hommes)-ed846'
@@ -171,24 +194,31 @@ def choix_final_url(initial, final, url):
     return final
 
 
-sport = st.sidebar.radio('Sports', ('Football', 'Tennis', 'Rugby', 'Handball', 'Hockey', 'Entrée manuelle (1 compétition)', 'Entrée manuelle (+ d\'1 compétition)'))
+sport = st.sidebar.radio('Sports', ('Football', 'Tennis', 'Rugby', 'Handball', 'Hockey', 'Entrée manuelle \
+        (1 compétition)', 'Entrée manuelle (+ d\'1 compétition)'))
 
 if sport == 'Football':
     st.markdown(
         "<h3 style='text-align: center; color: grey; size = 0'>Benchmark Football</h3>",
         unsafe_allow_html=True)
+    tempo_url_foot = []
+    tempo_name_foot= []
 
+    tableau = pd.DataFrame(list(zip(name_foot, competition_foot_url)), columns=['Selection', 'Url'])
+    options = st.multiselect('Quelle compétition ?', name_foot)
+
+    for item in options:
+        for j in range(len(tableau)):
+            if item == tableau.iloc[j,0]:
+                tempo_url_foot.append(tableau.iloc[j,1])
+                tempo_name_foot.append(tableau.iloc[j,0])
     # Benchmark
-    nb_rencontres = st.slider('Combien de rencontres à prendre en compte maximum ?', 0, 30, 2)
+    nb_rencontres = st.slider('Combien de rencontres à prendre en compte maximum ?', 0, 20, 2)
     lancement = st.button('Lancez le benchmark')
-    competition_foot_initial = [ligue_1_url, ligue_2_url, liga_url, serie_A_url, bundesliga_url, premier_league_url,
-                                champions_league_url, europa_league_url, carabao_cup_url,
-                                coupe_allemagne_url]
 
     if lancement:
-        bench_final = script_1_N_2(nb_rencontres,competition_foot_initial)
-        bench_final.columns = ['Ligue 1', 'Ligue 2', 'Liga', 'Bundesliga', 'Serie A', 'Premier League',
-                               'Carabao Cup', 'Champions League', 'Europa League', 'Coupe d\'Allemagne']
+        bench_final = script_1_N_2(nb_rencontres, tempo_url_foot)
+        bench_final.columns = tempo_name_foot
         st.table(bench_final)
 
 
