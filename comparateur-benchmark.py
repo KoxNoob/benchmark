@@ -314,7 +314,12 @@ if sport == 'Entrée manuelle (+ d\'1 compétition)' :
             bench_final['moyenne'] = 1
 
             for i in range(10):
-                bench_final.iloc[i, -1] = "{:.2f}".format((float(bench_final.iloc[i, 0]) + float(bench_final.iloc[i,1]))/2)
+                diviseur = 2
+                for j in range(2):
+                    if bench_final.iloc[i, j] == 0:
+                        diviseur -= 1
+                bench_final.iloc[i, -1] = "{:.2f}".format((float(bench_final.iloc[i, 0]) + float(bench_final.iloc[i,1]))/diviseur)
+
             st.table(bench_final)
 
 
@@ -341,10 +346,14 @@ if sport == 'Entrée manuelle (+ d\'1 compétition)' :
             bench_final['moyenne'] = 1
 
             for i in range(10):
+                diviseur = 3
+                for j in range(3):
+                    if bench_final.iloc[i, j] == 0:
+                        diviseur -= 1
                 bench_final.iloc[i, -1] = "{:.2f}".format(
-                    (float(bench_final.iloc[i, 0]) + float(bench_final.iloc[i, 1]) + float(bench_final.iloc[i,2])) / 3)
-            st.table(bench_final)
+                    (float(bench_final.iloc[i, 0]) + float(bench_final.iloc[i, 1]) + float(bench_final.iloc[i,2])) / diviseur)
 
+            st.table(bench_final)
 
 
 
@@ -374,9 +383,14 @@ if sport == 'Entrée manuelle (+ d\'1 compétition)' :
             bench_final['moyenne'] = 1
 
             for i in range(10):
+                diviseur = 4
+                for j in range(4):
+                    if bench_final.iloc[i, j] == 0:
+                        diviseur -= 1
+
                 bench_final.iloc[i, -1] = "{:.2f}".format(
                     (float(bench_final.iloc[i, 0]) + float(bench_final.iloc[i, 1]) + float(bench_final.iloc[i,2]) +
-                     float(bench_final.iloc[i,3])) / 4)
+                     float(bench_final.iloc[i,3])) / diviseur)
             st.table(bench_final)
 
     if nb_competition == '5':
@@ -408,9 +422,14 @@ if sport == 'Entrée manuelle (+ d\'1 compétition)' :
             bench_final['moyenne'] = 1
 
             for i in range(10):
+                diviseur = 5
+                for j in range(5):
+                    if bench_final.iloc[i, j] == 0:
+                        diviseur -= 1
+
                 bench_final.iloc[i, -1] = "{:.2f}".format((float(bench_final.iloc[i, 0]) + float(bench_final.iloc[i, 1])
                                                     + float(bench_final.iloc[i,2]) + float(bench_final.iloc[i,3]) +
-                                                           float(bench_final.iloc[i,4])) / 5)
+                                                           float(bench_final.iloc[i,4])) / diviseur)
             st.table(bench_final)
 
     if nb_competition == '6':
@@ -447,6 +466,13 @@ if sport == 'Entrée manuelle (+ d\'1 compétition)' :
             bench_final['moyenne'] = 1
 
             for i in range(10):
+                diviseur = 6
+                for j in range(6):
+                    if bench_final.iloc[i, j] == 0:
+                        diviseur -= 1
+
                 bench_final.iloc[i, -1] = "{:.2f}".format((float(bench_final.iloc[i, 0]) + float(bench_final.iloc[i, 1])
                                                      + float(bench_final.iloc[i, 2]) + float(bench_final.iloc[i, 3]) +
-                                                     float(bench_final.iloc[i, 4]) + float(bench_final.iloc[i,5])) / 6)
+                                                     float(bench_final.iloc[i, 4]) + float(bench_final.iloc[i,5])) / diviseur)
+
+            st.table(bench_final)
