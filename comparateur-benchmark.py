@@ -32,18 +32,26 @@ super_lig_turquie_url = 'http://www.comparateur-de-cotes.fr/comparateur/football
 bundesliga_autriche_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Autriche-Bundesliga-ed17'
 superligue_danemark_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Danemark-Superligue-ed26'
 ecosse_premierleague_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Ecosse-Premier-League-ed120'
+bresil_campeonato_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Br%C3%A9sil-Campeonato-ed116'
+mexique_primera_A_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Mexico-Primera-A-ed109'
+chili_primera_division_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Chili-Primera-Division-ed174'
+equateur_serie_A_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Equateur-Serie-A-ed148'
+copa_libertadores_url = 'comparateur-de-cotes.fr/comparateur/football/Copa-Libertadores-ed737'
+maroc_botola_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Maroc-Botola-Pro-ed558'
 
 
 competition_foot_url = [ligue_1_url, ligue_2_url, liga_url, serie_A_url, bundesliga_url, premier_league_url,
                             champions_league_url, europa_league_url, coupe_allemagne_url, carabao_cup_url, jupiler_league,
                         super_league_suisse, liga_nos, bundesliga_2_url, championship_url, mls_url, premier_league_russie_url,
                         premier_league_ukraine_url, eredivisie_pb_url, super_lig_turquie_url, bundesliga_autriche_url,
-                        superligue_danemark_url, ecosse_premierleague_url]
+                        superligue_danemark_url, ecosse_premierleague_url, bresil_campeonato_url, mexique_primera_A_url,
+                        chili_primera_division_url, equateur_serie_A_url, copa_libertadores_url, maroc_botola_url]
 
 name_foot = ['Ligue 1', 'Ligue 2', 'Liga', 'Serie_A', 'Bundesliga', 'Premier League', 'Champions League', 'Europa League',
              'Carabao Cup', 'Coupe d\'Allemagne', 'Jupiler League', 'Super League Suisse','Liga Nos', 'Bundesliga 2',
              'Championship', 'MLS', 'Premier League Russie', 'Premier League Ukraine', 'Eredivisie Pays-Bas', 'Super Lig \
-             Turquie', 'Bundesliga Autriche', 'Superligue Danemark', 'Ecosse Premierleague']
+             Turquie', 'Bundesliga Autriche', 'Superligue Danemark', 'Ecosse Premierleague', 'Bresil Campeonato',
+             'Mexique Primera A', 'Chili Primera Division', 'Equateur Serie A', 'Copa Libertadores', 'Maroc Botola']
 
 # Compétition tennis
 us_open_hommes_url = 'http://www.comparateur-de-cotes.fr/comparateur/tennis/US-Open-(Hommes)-ed846'
@@ -84,21 +92,14 @@ name_hand = ['Lidl Starligue', 'Liga Asobal']
 # Compétition hockey
 nhl_url = 'http://www.comparateur-de-cotes.fr/comparateur/hockey-sur-glace/Etats-Unis-NHL-ed378'
 khl_url = 'http://www.comparateur-de-cotes.fr/comparateur/hockey-sur-glace/KHL-Russie-Superligue-ed395'
+rep_tcheque_extraliga_url = 'http://www.comparateur-de-cotes.fr/comparateur/hockey-sur-glace/Rep.-Tch%C3%A8que-Extraliga-ed380'
+belarus_OL_url = 'http://www.comparateur-de-cotes.fr/comparateur/hockey-sur-glace/Belarus-OL-ed512'
+suede_elitserien_url = 'http://www.comparateur-de-cotes.fr/comparateur/hockey-sur-glace/Su%C3%A8de-Elitserien-ed392'
 
-competition_hockey_url = [nhl_url, khl_url]
+competition_hockey_url = [nhl_url, khl_url, rep_tcheque_extraliga_url, belarus_OL_url, suede_elitserien_url]
 
-name_hockey = ['NHL', 'KHL']
+name_hockey = ['NHL', 'KHL', 'Rep. Tcheque Extraliga', 'Belarus OL', 'Suede Elitserien']
 
-url_competitions = [ligue_1_url, ligue_2_url, liga_url, bundesliga_url, serie_A_url, premier_league_url,
-                    ligue_des_nations_url, qualif_euro2021_moins21_url, champions_league_url, europa_league_url,
-                    coupe_allemagne_url, us_open_hommes_url, us_open_femmes_url, us_open_dh_url, us_opendf_url,
-                    kitzbuhel_url, istanbul_url, champions_cup_url, top_14_url, nba_url, lidl_starligue_url,
-                    liga_asobal_url, nhl_url, khl_url]
-
-name_competitions = ['Ligue 1', 'Ligue 2', 'Liga', 'Bundesliga', 'Serie A', 'Premier League', 'Ligue des Nations',
-                     'Qualif Euro 2021 (-21 ans)', 'Champions League', 'Europa League', 'Coupe d\'Allemagne',
-                     'US Open Hommes', 'US Open Femmes', 'US Open Double Hommes', 'US Open Double Femmes', 'Kitzbühel',
-                     'Istanbul', 'Champions Cup', 'Top14', 'NBA', 'Lidl Starligue', 'Liga Asobal', 'NHL', 'KHL']
 
 # Opérateurs
 zebet = "ZEbet"
@@ -113,7 +114,6 @@ bwin = "Bwin"
 betclic = "Betclic"
 
 operateurs = [winamax, unibet, betclic, parions_sports, zebet, pmu, bwin, poker_stars, vbet, netbet]
-
 
 def script_1_N_2(nb_match, liste_competition):
     global trj_moyenne
@@ -233,13 +233,33 @@ if sport == 'Football':
                 tempo_name_foot.append(tableau.iloc[j,0])
     # Benchmark
     nb_rencontres = st.slider('Combien de rencontres à prendre en compte maximum ?', 0, 20, 2)
+    moyenne = st.checkbox('Faire la moyenne ?')
     lancement = st.button('Lancez le benchmark')
 
-    if lancement:
+    if lancement and moyenne:
+
+        bench_final = script_1_N_2(nb_rencontres, tempo_url_foot)
+        bench_final.columns = tempo_name_foot
+        bench_final['moyenne'] = 1
+        for i in range(10):
+            total_moyenne = 0.0
+            diviseur = len(bench_final.columns) - 1
+            for j in range(len(bench_final.columns) - 1):
+                if bench_final.iloc[i, j] == 0:
+                    diviseur -= 1
+                else:
+                    total_moyenne += float(bench_final.iloc[i, j])
+            if diviseur == 0:
+                bench_final.iloc[i, -1] = 0
+            else:
+                bench_final.iloc[i, -1] = "{:.2f}".format(total_moyenne / diviseur)
+
+        st.table(bench_final)
+
+    elif lancement :
         bench_final = script_1_N_2(nb_rencontres, tempo_url_foot)
         bench_final.columns = tempo_name_foot
         st.table(bench_final)
-
 
 if sport == 'Tennis':
     st.markdown(
@@ -259,10 +279,31 @@ if sport == 'Tennis':
                 tempo_name_tennis.append(tableau.iloc[j, 0])
     # Benchmark
     nb_rencontres = st.slider('Combien de rencontres à prendre en compte maximum ?', 0, 20, 2)
+    moyenne = st.checkbox('Faire la moyenne ?')
     lancement = st.button('Lancez le benchmark')
 
-    if lancement:
-        bench_final = script_1_2(nb_rencontres, tempo_url_tennis)
+    if lancement and moyenne:
+
+        bench_final = script_1_N_2(nb_rencontres, tempo_url_tennis)
+        bench_final.columns = tempo_name_tennis
+        bench_final['moyenne'] = 1
+        for i in range(10):
+            total_moyenne = 0.0
+            diviseur = len(bench_final.columns) - 1
+            for j in range(len(bench_final.columns) - 1):
+                if bench_final.iloc[i, j] == 0:
+                    diviseur -= 1
+                else:
+                    total_moyenne += float(bench_final.iloc[i, j])
+            if diviseur == 0:
+                bench_final.iloc[i, -1] = 0
+            else:
+                bench_final.iloc[i, -1] = "{:.2f}".format(total_moyenne / diviseur)
+
+        st.table(bench_final)
+
+    elif lancement:
+        bench_final = script_1_N_2(nb_rencontres, tempo_url_tennis)
         bench_final.columns = tempo_name_tennis
         st.table(bench_final)
 
@@ -285,13 +326,33 @@ if sport == 'Rugby':
                 tempo_name_rugby.append(tableau.iloc[j,0])
     # Benchmark
     nb_rencontres = st.slider('Combien de rencontres à prendre en compte maximum ?', 0, 20, 2)
+    moyenne = st.checkbox('Faire la moyenne ?')
     lancement = st.button('Lancez le benchmark')
 
-    if lancement:
+    if lancement and moyenne:
+
+        bench_final = script_1_N_2(nb_rencontres, tempo_url_rugby)
+        bench_final.columns = tempo_name_rugby
+        bench_final['moyenne'] = 1
+        for i in range(10):
+            total_moyenne = 0.0
+            diviseur = len(bench_final.columns) - 1
+            for j in range(len(bench_final.columns) - 1):
+                if bench_final.iloc[i, j] == 0:
+                    diviseur -= 1
+                else:
+                    total_moyenne += float(bench_final.iloc[i, j])
+            if diviseur == 0:
+                bench_final.iloc[i, -1] = 0
+            else:
+                bench_final.iloc[i, -1] = "{:.2f}".format(total_moyenne / diviseur)
+
+        st.table(bench_final)
+
+    elif lancement:
         bench_final = script_1_N_2(nb_rencontres, tempo_url_rugby)
         bench_final.columns = tempo_name_rugby
         st.table(bench_final)
-
 
 if sport == 'Handball':
     st.markdown(
@@ -311,9 +372,30 @@ if sport == 'Handball':
                 tempo_name_handball.append(tableau.iloc[j,0])
     # Benchmark
     nb_rencontres = st.slider('Combien de rencontres à prendre en compte maximum ?', 0, 20, 2)
+    moyenne = st.checkbox('Faire la moyenne ?')
     lancement = st.button('Lancez le benchmark')
 
-    if lancement:
+    if lancement and moyenne:
+
+        bench_final = script_1_N_2(nb_rencontres, tempo_url_handball)
+        bench_final.columns = tempo_name_handball
+        bench_final['moyenne'] = 1
+        for i in range(10):
+            total_moyenne = 0.0
+            diviseur = len(bench_final.columns) - 1
+            for j in range(len(bench_final.columns) - 1):
+                if bench_final.iloc[i, j] == 0:
+                    diviseur -= 1
+                else:
+                    total_moyenne += float(bench_final.iloc[i, j])
+            if diviseur == 0:
+                bench_final.iloc[i, -1] = 0
+            else:
+                bench_final.iloc[i, -1] = "{:.2f}".format(total_moyenne / diviseur)
+
+        st.table(bench_final)
+
+    elif lancement:
         bench_final = script_1_N_2(nb_rencontres, tempo_url_handball)
         bench_final.columns = tempo_name_handball
         st.table(bench_final)
@@ -337,9 +419,30 @@ if sport == 'Hockey':
                 tempo_name_hockey.append(tableau.iloc[j,0])
     # Benchmark
     nb_rencontres = st.slider('Combien de rencontres à prendre en compte maximum ?', 0, 20, 2)
+    moyenne = st.checkbox('Faire la moyenne ?')
     lancement = st.button('Lancez le benchmark')
 
-    if lancement:
+    if lancement and moyenne:
+
+        bench_final = script_1_N_2(nb_rencontres, tempo_url_hockey)
+        bench_final.columns = tempo_name_hockey
+        bench_final['moyenne'] = 1
+        for i in range(10):
+            total_moyenne = 0.0
+            diviseur = len(bench_final.columns) - 1
+            for j in range(len(bench_final.columns) - 1):
+                if bench_final.iloc[i, j] == 0:
+                    diviseur -= 1
+                else:
+                    total_moyenne += float(bench_final.iloc[i, j])
+            if diviseur == 0:
+                bench_final.iloc[i, -1] = 0
+            else:
+                bench_final.iloc[i, -1] = "{:.2f}".format(total_moyenne / diviseur)
+
+        st.table(bench_final)
+
+    elif lancement:
         bench_final = script_1_N_2(nb_rencontres, tempo_url_hockey)
         bench_final.columns = tempo_name_hockey
         st.table(bench_final)
