@@ -55,9 +55,19 @@ istanbul_url = 'http://www.comparateur-de-cotes.fr/comparateur/tennis/Istanbul-(
 rome_atp_url = 'http://www.comparateur-de-cotes.fr/comparateur/tennis/Rome-(Masters)-ed819'
 rome_wta_url = 'http://www.comparateur-de-cotes.fr/comparateur/tennis/Rome-(Prem.-Events)-ed883'
 
+competition_tennis_url = [us_opendf_url, us_open_dh_url, us_open_femmes_url, us_open_hommes_url, kitzbuhel_url,
+                          istanbul_url, rome_atp_url, rome_wta_url]
+
+name_tennis = ['US Open DF', 'US Open DH', 'US Open Femmes', 'US Open Hommes', 'Kitzbuhel', 'Istanbul', 'Rome ATP',
+               'Rome WTA']
+
 # Compétition rugby
 champions_cup_url = 'http://www.comparateur-de-cotes.fr/comparateur/rugby/Champions-Cup-ed569'
 top_14_url = 'http://www.comparateur-de-cotes.fr/comparateur/rugby/France-Top-14-ed341'
+
+competition_rugby_url = [champions_cup_url, top_14_url]
+
+name_rugby = ['Champions Cup', 'Top 14']
 
 # Compétition basketball
 nba_url = 'http://www.comparateur-de-cotes.fr/comparateur/basketball/Etats-Unis-NBA-ed353'
@@ -66,9 +76,18 @@ nba_url = 'http://www.comparateur-de-cotes.fr/comparateur/basketball/Etats-Unis-
 lidl_starligue_url = 'http://www.comparateur-de-cotes.fr/comparateur/handball/France-Division-1-ed268'
 liga_asobal_url = 'http://www.comparateur-de-cotes.fr/comparateur/handball/Espagne-Liga-Asobal-ed267'
 
+competition_handball_url = [lidl_starligue_url, liga_asobal_url]
+
+name_hand = ['Lidl Starligue', 'Liga Asobal']
+
+
 # Compétition hockey
 nhl_url = 'http://www.comparateur-de-cotes.fr/comparateur/hockey-sur-glace/Etats-Unis-NHL-ed378'
 khl_url = 'http://www.comparateur-de-cotes.fr/comparateur/hockey-sur-glace/KHL-Russie-Superligue-ed395'
+
+competition_hockey_url = [nhl_url, khl_url]
+
+name_hockey = ['NHL', 'KHL']
 
 url_competitions = [ligue_1_url, ligue_2_url, liga_url, bundesliga_url, serie_A_url, premier_league_url,
                     ligue_des_nations_url, qualif_euro2021_moins21_url, champions_league_url, europa_league_url,
@@ -194,15 +213,15 @@ def choix_final_url(initial, final, url):
     return final
 
 
-sport = st.sidebar.radio('Sports', ('Football', 'Tennis', 'Rugby', 'Handball', 'Hockey', 'Entrée manuelle \
-        (1 compétition)', 'Entrée manuelle (+ d\'1 compétition)'))
+sport = st.sidebar.radio('Sports', ('Football', 'Tennis', 'Rugby', 'Handball', 'Hockey', 'Entrée manuelle (1 compétition)',
+                                    'Entrée manuelle (+ d\'1 compétition)'))
 
 if sport == 'Football':
     st.markdown(
         "<h3 style='text-align: center; color: grey; size = 0'>Benchmark Football</h3>",
         unsafe_allow_html=True)
     tempo_url_foot = []
-    tempo_name_foot= []
+    tempo_name_foot = []
 
     tableau = pd.DataFrame(list(zip(name_foot, competition_foot_url)), columns=['Selection', 'Url'])
     options = st.multiselect('Quelle compétition ?', name_foot)
@@ -227,14 +246,24 @@ if sport == 'Tennis':
         "<h3 style='text-align: center; color: grey; size = 0'>Benchmark Tennis</h3>",
         unsafe_allow_html=True)
 
+    tempo_url_tennis = []
+    tempo_name_tennis = []
+
+    tableau = pd.DataFrame(list(zip(name_tennis, competition_tennis_url)), columns=['Selection', 'Url'])
+    options = st.multiselect('Quelle compétition ?', name_tennis)
+
+    for item in options:
+        for j in range(len(tableau)):
+            if item == tableau.iloc[j, 0]:
+                tempo_url_tennis.append(tableau.iloc[j, 1])
+                tempo_name_tennis.append(tableau.iloc[j, 0])
     # Benchmark
     nb_rencontres = st.slider('Combien de rencontres à prendre en compte maximum ?', 0, 20, 2)
     lancement = st.button('Lancez le benchmark')
-    competition_tennis_initial = [rome_atp_url, rome_wta_url]
 
     if lancement:
-        bench_final = script_1_2(nb_rencontres, competition_tennis_initial)
-        bench_final.columns = ['Rome ATP', 'Rome WTA']
+        bench_final = script_1_2(nb_rencontres, tempo_url_tennis)
+        bench_final.columns = tempo_name_tennis
         st.table(bench_final)
 
 
@@ -243,16 +272,25 @@ if sport == 'Rugby':
         "<h3 style='text-align: center; color: grey; size = 0'>Benchmark Rugby</h3>",
         unsafe_allow_html=True)
 
+    tempo_url_rugby = []
+    tempo_name_rugby = []
+
+    tableau = pd.DataFrame(list(zip(name_rugby, competition_rugby_url)), columns=['Selection', 'Url'])
+    options = st.multiselect('Quelle compétition ?', name_rugby)
+
+    for item in options:
+        for j in range(len(tableau)):
+            if item == tableau.iloc[j,0]:
+                tempo_url_rugby.append(tableau.iloc[j,1])
+                tempo_name_rugby.append(tableau.iloc[j,0])
     # Benchmark
     nb_rencontres = st.slider('Combien de rencontres à prendre en compte maximum ?', 0, 20, 2)
     lancement = st.button('Lancez le benchmark')
-    competition_tennis_initial = [top_14_url, champions_cup_url]
 
     if lancement:
-        bench_final = script_1_N_2(nb_rencontres, competition_tennis_initial)
-        bench_final.columns = ['Top14', 'Champions Cup']
+        bench_final = script_1_N_2(nb_rencontres, tempo_url_rugby)
+        bench_final.columns = tempo_name_rugby
         st.table(bench_final)
-
 
 
 if sport == 'Handball':
@@ -260,14 +298,24 @@ if sport == 'Handball':
         "<h3 style='text-align: center; color: grey; size = 0'>Benchmark Handball</h3>",
         unsafe_allow_html=True)
 
+    tempo_url_handball = []
+    tempo_name_handball = []
+
+    tableau = pd.DataFrame(list(zip(name_hand, competition_handball_url)), columns=['Selection', 'Url'])
+    options = st.multiselect('Quelle compétition ?', name_hand)
+
+    for item in options:
+        for j in range(len(tableau)):
+            if item == tableau.iloc[j,0]:
+                tempo_url_handball.append(tableau.iloc[j,1])
+                tempo_name_handball.append(tableau.iloc[j,0])
     # Benchmark
     nb_rencontres = st.slider('Combien de rencontres à prendre en compte maximum ?', 0, 20, 2)
     lancement = st.button('Lancez le benchmark')
-    competition_tennis_initial = [lidl_starligue_url, liga_asobal_url]
 
     if lancement:
-        bench_final = script_1_N_2(nb_rencontres, competition_tennis_initial)
-        bench_final.columns = ['Lidl Starligue', 'Liga Asobal']
+        bench_final = script_1_N_2(nb_rencontres, tempo_url_handball)
+        bench_final.columns = tempo_name_handball
         st.table(bench_final)
 
 
@@ -276,14 +324,24 @@ if sport == 'Hockey':
         "<h3 style='text-align: center; color: grey; size = 0'>Benchmark Hockey</h3>",
         unsafe_allow_html=True)
 
+    tempo_url_hockey = []
+    tempo_name_hockey = []
+
+    tableau = pd.DataFrame(list(zip(name_hockey, competition_hockey_url)), columns=['Selection', 'Url'])
+    options = st.multiselect('Quelle compétition ?', name_hockey)
+
+    for item in options:
+        for j in range(len(tableau)):
+            if item == tableau.iloc[j,0]:
+                tempo_url_hockey.append(tableau.iloc[j,1])
+                tempo_name_hockey.append(tableau.iloc[j,0])
     # Benchmark
     nb_rencontres = st.slider('Combien de rencontres à prendre en compte maximum ?', 0, 20, 2)
     lancement = st.button('Lancez le benchmark')
-    competition_tennis_initial = [nhl_url, khl_url]
 
     if lancement:
-        bench_final = script_1_N_2(nb_rencontres, competition_tennis_initial)
-        bench_final.columns = ['NHL', 'KHL']
+        bench_final = script_1_N_2(nb_rencontres, tempo_url_hockey)
+        bench_final.columns = tempo_name_hockey
         st.table(bench_final)
 
 if sport == "Entrée manuelle (1 compétition)":
@@ -348,7 +406,10 @@ if sport == 'Entrée manuelle (+ d\'1 compétition)' :
                 for j in range(2):
                     if bench_final.iloc[i, j] == 0:
                         diviseur -= 1
-                bench_final.iloc[i, -1] = "{:.2f}".format((float(bench_final.iloc[i, 0]) + float(bench_final.iloc[i,1]))/diviseur)
+                if diviseur == 0 :
+                    bench_final.iloc[i, -1] = 0
+                else :
+                    bench_final.iloc[i, -1] = "{:.2f}".format((float(bench_final.iloc[i, 0]) + float(bench_final.iloc[i,1]))/diviseur)
 
             st.table(bench_final)
 
@@ -380,7 +441,10 @@ if sport == 'Entrée manuelle (+ d\'1 compétition)' :
                 for j in range(3):
                     if bench_final.iloc[i, j] == 0:
                         diviseur -= 1
-                bench_final.iloc[i, -1] = "{:.2f}".format(
+                if diviseur == 0 :
+                    bench_final.iloc[i, -1] = 0
+                else :
+                    bench_final.iloc[i, -1] = "{:.2f}".format(
                     (float(bench_final.iloc[i, 0]) + float(bench_final.iloc[i, 1]) + float(bench_final.iloc[i,2])) / diviseur)
 
             st.table(bench_final)
@@ -418,7 +482,10 @@ if sport == 'Entrée manuelle (+ d\'1 compétition)' :
                     if bench_final.iloc[i, j] == 0:
                         diviseur -= 1
 
-                bench_final.iloc[i, -1] = "{:.2f}".format(
+                if diviseur == 0 :
+                    bench_final.iloc[i, -1] = 0
+                else :
+                    bench_final.iloc[i, -1] = "{:.2f}".format(
                     (float(bench_final.iloc[i, 0]) + float(bench_final.iloc[i, 1]) + float(bench_final.iloc[i,2]) +
                      float(bench_final.iloc[i,3])) / diviseur)
             st.table(bench_final)
@@ -457,7 +524,10 @@ if sport == 'Entrée manuelle (+ d\'1 compétition)' :
                     if bench_final.iloc[i, j] == 0:
                         diviseur -= 1
 
-                bench_final.iloc[i, -1] = "{:.2f}".format((float(bench_final.iloc[i, 0]) + float(bench_final.iloc[i, 1])
+                if diviseur == 0 :
+                    bench_final.iloc[i, -1] = 0
+                else :
+                    bench_final.iloc[i, -1] = "{:.2f}".format((float(bench_final.iloc[i, 0]) + float(bench_final.iloc[i, 1])
                                                     + float(bench_final.iloc[i,2]) + float(bench_final.iloc[i,3]) +
                                                            float(bench_final.iloc[i,4])) / diviseur)
             st.table(bench_final)
@@ -501,7 +571,10 @@ if sport == 'Entrée manuelle (+ d\'1 compétition)' :
                     if bench_final.iloc[i, j] == 0:
                         diviseur -= 1
 
-                bench_final.iloc[i, -1] = "{:.2f}".format((float(bench_final.iloc[i, 0]) + float(bench_final.iloc[i, 1])
+                if diviseur == 0 :
+                    bench_final.iloc[i, -1] = 0
+                else :
+                    bench_final.iloc[i, -1] = "{:.2f}".format((float(bench_final.iloc[i, 0]) + float(bench_final.iloc[i, 1])
                                                      + float(bench_final.iloc[i, 2]) + float(bench_final.iloc[i, 3]) +
                                                      float(bench_final.iloc[i, 4]) + float(bench_final.iloc[i,5])) / diviseur)
 
