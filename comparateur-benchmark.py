@@ -3,6 +3,7 @@ import requests
 import time
 from bs4 import BeautifulSoup
 import pandas as pd
+import numpy as np
 
 headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:55.0) Gecko/20100101 Firefox/55.0'}
 
@@ -158,6 +159,13 @@ def script_1_N_2(nb_match, liste_competition):
             liste_trj.append(trj_moyenne)
         bench_tempo = pd.DataFrame(data=liste_trj, index=[i for i in operateurs])
         bench_final = bench_final.merge(bench_tempo, left_index=True, right_index=True)
+    bench_final = bench_final.astype(np.float64)
+    bench_final = bench_final.apply(lambda x: x.replace(0.00, np.nan))
+
+    for competition in bench_final.columns:
+        bench_final.loc['Moyenne Compétition', competition] = "{:.2f}".format(round(
+            (bench_final[competition]).sum() / (
+                    len(bench_final[competition]) - bench_final[competition].isnull().sum()), 2))
 
     return bench_final
 
@@ -199,6 +207,13 @@ def script_1_2(nb_match, liste_competition) :
             liste_trj.append(trj_moyenne)
         bench_tempo = pd.DataFrame(data=liste_trj, index=[i for i in operateurs])
         bench_final = bench_final.merge(bench_tempo, left_index=True, right_index=True)
+    bench_final = bench_final.astype(np.float64)
+    bench_final = bench_final.apply(lambda x: x.replace(0.00, np.nan))
+
+    for competition in bench_final.columns:
+        bench_final.loc['Moyenne Compétition', competition] = "{:.2f}".format(round(
+            (bench_final[competition]).sum() / (
+                        len(bench_final[competition]) - bench_final[competition].isnull().sum()), 2))
 
     return bench_final
 
@@ -238,14 +253,14 @@ if sport == 'Football':
                 tempo_name_foot.append(tableau.iloc[j,0])
     # Benchmark
     nb_rencontres = st.slider('Combien de rencontres à prendre en compte maximum ?', 0, 20, 2)
-    moyenne = st.checkbox('Faire la moyenne ?')
+    moyenne = st.checkbox('Faire la moyenne par opérateur ?')
     lancement = st.button('Lancez le benchmark')
 
     if lancement and moyenne:
 
         bench_final = script_1_N_2(nb_rencontres, tempo_url_foot)
         bench_final.columns = tempo_name_foot
-        bench_final['moyenne'] = 1
+        bench_final['Moyenne Opérateur'] = 1
         for i in range(10):
             total_moyenne = 0.0
             diviseur = len(bench_final.columns) - 1
@@ -264,7 +279,6 @@ if sport == 'Football':
     elif lancement :
         bench_final = script_1_N_2(nb_rencontres, tempo_url_foot)
         bench_final.columns = tempo_name_foot
-        bench_final.loc["Moyenne Compétition"] = bench_final.mean()
         st.table(bench_final)
 
 if sport == 'Tennis':
@@ -285,14 +299,14 @@ if sport == 'Tennis':
                 tempo_name_tennis.append(tableau.iloc[j, 0])
     # Benchmark
     nb_rencontres = st.slider('Combien de rencontres à prendre en compte maximum ?', 0, 20, 2)
-    moyenne = st.checkbox('Faire la moyenne ?')
+    moyenne = st.checkbox('Faire la moyenne par opérateur ?')
     lancement = st.button('Lancez le benchmark')
 
     if lancement and moyenne:
 
         bench_final = script_1_2(nb_rencontres, tempo_url_tennis)
         bench_final.columns = tempo_name_tennis
-        bench_final['moyenne'] = 1
+        bench_final['Moyenne Opérateur'] = 1
         for i in range(10):
             total_moyenne = 0.0
             diviseur = len(bench_final.columns) - 1
@@ -311,7 +325,6 @@ if sport == 'Tennis':
     elif lancement:
         bench_final = script_1_2(nb_rencontres, tempo_url_tennis)
         bench_final.columns = tempo_name_tennis
-        bench_final.loc["Moyenne Compétition"] = bench_final.mean()
         st.table(bench_final)
 
 
@@ -333,14 +346,14 @@ if sport == 'Rugby':
                 tempo_name_rugby.append(tableau.iloc[j,0])
     # Benchmark
     nb_rencontres = st.slider('Combien de rencontres à prendre en compte maximum ?', 0, 20, 2)
-    moyenne = st.checkbox('Faire la moyenne ?')
+    moyenne = st.checkbox('Faire la moyenne par opérateur ?')
     lancement = st.button('Lancez le benchmark')
 
     if lancement and moyenne:
 
         bench_final = script_1_N_2(nb_rencontres, tempo_url_rugby)
         bench_final.columns = tempo_name_rugby
-        bench_final['moyenne'] = 1
+        bench_final['Moyenne Opérateur'] = 1
         for i in range(10):
             total_moyenne = 0.0
             diviseur = len(bench_final.columns) - 1
@@ -359,7 +372,6 @@ if sport == 'Rugby':
     elif lancement:
         bench_final = script_1_N_2(nb_rencontres, tempo_url_rugby)
         bench_final.columns = tempo_name_rugby
-        bench_final.loc["Moyenne Compétition"] = bench_final.mean()
         st.table(bench_final)
 
 if sport == 'Handball':
@@ -380,14 +392,14 @@ if sport == 'Handball':
                 tempo_name_handball.append(tableau.iloc[j,0])
     # Benchmark
     nb_rencontres = st.slider('Combien de rencontres à prendre en compte maximum ?', 0, 20, 2)
-    moyenne = st.checkbox('Faire la moyenne ?')
+    moyenne = st.checkbox('Faire la moyenne par opérateur ?')
     lancement = st.button('Lancez le benchmark')
 
     if lancement and moyenne:
 
         bench_final = script_1_N_2(nb_rencontres, tempo_url_handball)
         bench_final.columns = tempo_name_handball
-        bench_final['moyenne'] = 1
+        bench_final['Moyenne Opérateur'] = 1
         for i in range(10):
             total_moyenne = 0.0
             diviseur = len(bench_final.columns) - 1
@@ -406,7 +418,6 @@ if sport == 'Handball':
     elif lancement:
         bench_final = script_1_N_2(nb_rencontres, tempo_url_handball)
         bench_final.columns = tempo_name_handball
-        bench_final.loc["Moyenne Compétition"] = bench_final.mean()
         st.table(bench_final)
 
 
@@ -428,14 +439,14 @@ if sport == 'Hockey':
                 tempo_name_hockey.append(tableau.iloc[j,0])
     # Benchmark
     nb_rencontres = st.slider('Combien de rencontres à prendre en compte maximum ?', 0, 20, 2)
-    moyenne = st.checkbox('Faire la moyenne ?')
+    moyenne = st.checkbox('Faire la moyenne par opérateur ?')
     lancement = st.button('Lancez le benchmark')
 
     if lancement and moyenne:
 
         bench_final = script_1_N_2(nb_rencontres, tempo_url_hockey)
         bench_final.columns = tempo_name_hockey
-        bench_final['moyenne'] = 1
+        bench_final['Moyenne Opérateur'] = 1
         for i in range(10):
             total_moyenne = 0.0
             diviseur = len(bench_final.columns) - 1
@@ -454,7 +465,6 @@ if sport == 'Hockey':
     elif lancement:
         bench_final = script_1_N_2(nb_rencontres, tempo_url_hockey)
         bench_final.columns = tempo_name_hockey
-        bench_final.loc["Moyenne Compétition"] = bench_final.mean()
         st.table(bench_final)
 
 if sport == "Entrée manuelle (1 compétition)":
@@ -512,7 +522,7 @@ if sport == 'Entrée manuelle (+ d\'1 compétition)' :
             else:
                 bench_final = script_1_N_2(nb_rencontres, entree_manuelle)
             bench_final.columns = [nom_competition_1, nom_competition_2]
-            bench_final['moyenne'] = 1
+            bench_final['Moyenne Opérateur'] = 1
 
             for i in range(10):
                 diviseur = 2
@@ -523,7 +533,7 @@ if sport == 'Entrée manuelle (+ d\'1 compétition)' :
                     bench_final.iloc[i, -1] = 0
                 else :
                     bench_final.iloc[i, -1] = "{:.2f}".format((float(bench_final.iloc[i, 0]) + float(bench_final.iloc[i,1]))/diviseur)
-            bench_final.loc["Moyenne Compétition"] = bench_final.mean()
+
             st.table(bench_final)
 
 
@@ -547,7 +557,7 @@ if sport == 'Entrée manuelle (+ d\'1 compétition)' :
             else:
                 bench_final = script_1_N_2(nb_rencontres, entree_manuelle)
             bench_final.columns = [nom_competition_1, nom_competition_2, nom_competition_3]
-            bench_final['moyenne'] = 1
+            bench_final['Moyenne Opérateur'] = 1
 
             for i in range(10):
                 diviseur = 3
@@ -559,7 +569,6 @@ if sport == 'Entrée manuelle (+ d\'1 compétition)' :
                 else :
                     bench_final.iloc[i, -1] = "{:.2f}".format(
                     (float(bench_final.iloc[i, 0]) + float(bench_final.iloc[i, 1]) + float(bench_final.iloc[i,2])) / diviseur)
-            bench_final.loc["Moyenne Compétition"] = bench_final.mean()
             st.table(bench_final)
 
 
@@ -587,7 +596,7 @@ if sport == 'Entrée manuelle (+ d\'1 compétition)' :
             else:
                 bench_final = script_1_N_2(nb_rencontres, entree_manuelle)
             bench_final.columns = [nom_competition_1, nom_competition_2, nom_competition_3,nom_competition_4]
-            bench_final['moyenne'] = 1
+            bench_final['Moyenne Opérateur'] = 1
 
             for i in range(10):
                 diviseur = 4
@@ -601,7 +610,6 @@ if sport == 'Entrée manuelle (+ d\'1 compétition)' :
                     bench_final.iloc[i, -1] = "{:.2f}".format(
                     (float(bench_final.iloc[i, 0]) + float(bench_final.iloc[i, 1]) + float(bench_final.iloc[i,2]) +
                      float(bench_final.iloc[i,3])) / diviseur)
-            bench_final.loc["Moyenne Compétition"] = bench_final.mean()
             st.table(bench_final)
 
     if nb_competition == '5':
@@ -630,7 +638,7 @@ if sport == 'Entrée manuelle (+ d\'1 compétition)' :
             else:
                 bench_final = script_1_N_2(nb_rencontres, entree_manuelle)
             bench_final.columns = [nom_competition_1, nom_competition_2, nom_competition_3, nom_competition_4, nom_competition_5]
-            bench_final['moyenne'] = 1
+            bench_final['Moyenne Opérateur'] = 1
 
             for i in range(10):
                 diviseur = 5
@@ -644,7 +652,6 @@ if sport == 'Entrée manuelle (+ d\'1 compétition)' :
                     bench_final.iloc[i, -1] = "{:.2f}".format((float(bench_final.iloc[i, 0]) + float(bench_final.iloc[i, 1])
                                                     + float(bench_final.iloc[i,2]) + float(bench_final.iloc[i,3]) +
                                                            float(bench_final.iloc[i,4])) / diviseur)
-            bench_final.loc["Moyenne Compétition"] = bench_final.mean()
             st.table(bench_final)
 
     if nb_competition == '6':
@@ -678,7 +685,7 @@ if sport == 'Entrée manuelle (+ d\'1 compétition)' :
             bench_final.columns = [nom_competition_1, nom_competition_2, nom_competition_3, nom_competition_4,
                                    nom_competition_5, nom_competition_6]
 
-            bench_final['moyenne'] = 1
+            bench_final['Moyenne Opérateur'] = 1
 
             for i in range(10):
                 diviseur = 6
@@ -693,5 +700,4 @@ if sport == 'Entrée manuelle (+ d\'1 compétition)' :
                                                      + float(bench_final.iloc[i, 2]) + float(bench_final.iloc[i, 3]) +
                                                      float(bench_final.iloc[i, 4]) + float(bench_final.iloc[i,5])) / diviseur)
 
-            bench_final.loc["Moyenne Compétition"] = bench_final.mean()
             st.table(bench_final)
