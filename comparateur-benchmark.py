@@ -163,10 +163,8 @@ def script_1_N_2(nb_match, liste_competition):
     bench_final = bench_final.apply(lambda x: x.replace(0.00, np.nan))
 
     for competition in bench_final.columns:
-        bench_final.loc['Moyenne Compétition', competition] = "{:.2f}".format(round(
-            (bench_final[competition]).sum() / (
-                    len(bench_final[competition]) - bench_final[competition].isnull().sum()), 2))
-
+        bench_final.loc['Moyenne Compétition', competition] = round(((bench_final[competition]).sum()) / (
+                    len(bench_final[competition]) - bench_final[competition].isnull().sum()),2)
     return bench_final
 
 def script_1_2(nb_match, liste_competition) :
@@ -211,9 +209,9 @@ def script_1_2(nb_match, liste_competition) :
     bench_final = bench_final.apply(lambda x: x.replace(0.00, np.nan))
 
     for competition in bench_final.columns:
-        bench_final.loc['Moyenne Compétition', competition] = "{:.2f}".format(round(
+        bench_final.loc['Moyenne Compétition', competition] = round(
             (bench_final[competition]).sum() / (
-                        len(bench_final[competition]) - bench_final[competition].isnull().sum()), 2))
+                        len(bench_final[competition]) - bench_final[competition].isnull().sum()), 2)
 
     return bench_final
 
@@ -274,12 +272,13 @@ if sport == 'Football':
             else:
                 bench_final.iloc[i, -1] = "{:.2f}".format(total_moyenne / diviseur)
 
-        st.table(bench_final)
+        st.table(bench_final.style.format("{:.2f}"))
 
-    elif lancement :
+    elif lancement:
         bench_final = script_1_N_2(nb_rencontres, tempo_url_foot)
         bench_final.columns = tempo_name_foot
-        st.table(bench_final)
+        st.table(bench_final.style.format("{:.2f}"))
+
 
 if sport == 'Tennis':
     st.markdown(
@@ -320,12 +319,12 @@ if sport == 'Tennis':
             else:
                 bench_final.iloc[i, -1] = "{:.2f}".format(total_moyenne / diviseur)
 
-        st.table(bench_final)
+        st.table(bench_final.style.format("{:.2f}"))
 
     elif lancement:
         bench_final = script_1_2(nb_rencontres, tempo_url_tennis)
         bench_final.columns = tempo_name_tennis
-        st.table(bench_final)
+        st.table(bench_final.style.format("{:.2f}"))
 
 
 if sport == 'Rugby':
@@ -367,12 +366,12 @@ if sport == 'Rugby':
             else:
                 bench_final.iloc[i, -1] = "{:.2f}".format(total_moyenne / diviseur)
 
-        st.table(bench_final)
+        st.table(bench_final.style.format("{:.2f}"))
 
     elif lancement:
         bench_final = script_1_N_2(nb_rencontres, tempo_url_rugby)
         bench_final.columns = tempo_name_rugby
-        st.table(bench_final)
+        st.table(bench_final.style.format("{:.2f}"))
 
 if sport == 'Handball':
     st.markdown(
@@ -413,12 +412,11 @@ if sport == 'Handball':
             else:
                 bench_final.iloc[i, -1] = "{:.2f}".format(total_moyenne / diviseur)
 
-        st.table(bench_final)
-
+        st.table(bench_final.style.format("{:.2f}"))
     elif lancement:
         bench_final = script_1_N_2(nb_rencontres, tempo_url_handball)
         bench_final.columns = tempo_name_handball
-        st.table(bench_final)
+        st.table(bench_final.style.format("{:.2f}"))
 
 
 if sport == 'Hockey':
@@ -460,12 +458,12 @@ if sport == 'Hockey':
             else:
                 bench_final.iloc[i, -1] = "{:.2f}".format(total_moyenne / diviseur)
 
-        st.table(bench_final)
+        st.table(bench_final.style.format("{:.2f}"))
 
     elif lancement:
         bench_final = script_1_N_2(nb_rencontres, tempo_url_hockey)
         bench_final.columns = tempo_name_hockey
-        st.table(bench_final)
+        st.table(bench_final.style.format("{:.2f}"))
 
 if sport == "Entrée manuelle (1 compétition)":
     st.markdown(
@@ -498,7 +496,7 @@ if sport == "Entrée manuelle (1 compétition)":
             bench_final = script_1_N_2(nb_rencontres, entree_manuelle)
 
         bench_final.columns = [nom_competition]
-        st.table(bench_final)
+        st.table(bench_final.style.format("{:.2f}"))
 
 
 if sport == 'Entrée manuelle (+ d\'1 compétition)' :
@@ -534,7 +532,7 @@ if sport == 'Entrée manuelle (+ d\'1 compétition)' :
                 else :
                     bench_final.iloc[i, -1] = "{:.2f}".format((float(bench_final.iloc[i, 0]) + float(bench_final.iloc[i,1]))/diviseur)
 
-            st.table(bench_final)
+            st.table(bench_final.style.format("{:.2f}"))
 
 
     if nb_competition == '3' :
@@ -569,7 +567,7 @@ if sport == 'Entrée manuelle (+ d\'1 compétition)' :
                 else :
                     bench_final.iloc[i, -1] = "{:.2f}".format(
                     (float(bench_final.iloc[i, 0]) + float(bench_final.iloc[i, 1]) + float(bench_final.iloc[i,2])) / diviseur)
-            st.table(bench_final)
+            st.table(bench_final.style.format("{:.2f}"))
 
 
 
@@ -610,7 +608,7 @@ if sport == 'Entrée manuelle (+ d\'1 compétition)' :
                     bench_final.iloc[i, -1] = "{:.2f}".format(
                     (float(bench_final.iloc[i, 0]) + float(bench_final.iloc[i, 1]) + float(bench_final.iloc[i,2]) +
                      float(bench_final.iloc[i,3])) / diviseur)
-            st.table(bench_final)
+            st.table(bench_final.style.format("{:.2f}"))
 
     if nb_competition == '5':
         entree_manuelle = []
@@ -652,7 +650,7 @@ if sport == 'Entrée manuelle (+ d\'1 compétition)' :
                     bench_final.iloc[i, -1] = "{:.2f}".format((float(bench_final.iloc[i, 0]) + float(bench_final.iloc[i, 1])
                                                     + float(bench_final.iloc[i,2]) + float(bench_final.iloc[i,3]) +
                                                            float(bench_final.iloc[i,4])) / diviseur)
-            st.table(bench_final)
+            st.table(bench_final.style.format("{:.2f}"))
 
     if nb_competition == '6':
         entree_manuelle = []
@@ -700,4 +698,4 @@ if sport == 'Entrée manuelle (+ d\'1 compétition)' :
                                                      + float(bench_final.iloc[i, 2]) + float(bench_final.iloc[i, 3]) +
                                                      float(bench_final.iloc[i, 4]) + float(bench_final.iloc[i,5])) / diviseur)
 
-            st.table(bench_final)
+            st.table(bench_final.style.format("{:.2f}"))
