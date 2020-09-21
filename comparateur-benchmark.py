@@ -62,20 +62,25 @@ kitzbuhel_url = 'http://www.comparateur-de-cotes.fr/comparateur/tennis/Kitzb%C3%
 istanbul_url = 'http://www.comparateur-de-cotes.fr/comparateur/tennis/Istanbul-(Intl.-Events)-ed895'
 rome_atp_url = 'http://www.comparateur-de-cotes.fr/comparateur/tennis/Rome-(Masters)-ed819'
 rome_wta_url = 'http://www.comparateur-de-cotes.fr/comparateur/tennis/Rome-(Prem.-Events)-ed883'
+hambourg_url = 'http://www.comparateur-de-cotes.fr/comparateur/tennis/Hambourg-(500-Series)-ed837'
+strasbourg_url = 'http://www.comparateur-de-cotes.fr/comparateur/tennis/Strasbourg-(Intl.-Events)-ed885'
+roland_garros_hommes_url = 'http://www.comparateur-de-cotes.fr/comparateur/tennis/Roland-Garros-(Hommes)-ed825'
+
 
 competition_tennis_url = [us_opendf_url, us_open_dh_url, us_open_femmes_url, us_open_hommes_url, kitzbuhel_url,
-                          istanbul_url, rome_atp_url, rome_wta_url]
+                          istanbul_url, rome_atp_url, rome_wta_url, hambourg_url, strasbourg_url, roland_garros_hommes_url]
 
 name_tennis = ['US Open DF', 'US Open DH', 'US Open Femmes', 'US Open Hommes', 'Kitzbuhel', 'Istanbul', 'Rome ATP',
-               'Rome WTA']
+               'Rome WTA', 'Hambourg', 'Strasbourg', 'Roland Garros Hommes']
 
 # Compétition rugby
 champions_cup_url = 'http://www.comparateur-de-cotes.fr/comparateur/rugby/Champions-Cup-ed569'
 top_14_url = 'http://www.comparateur-de-cotes.fr/comparateur/rugby/France-Top-14-ed341'
+pro_d2_url = 'http://www.comparateur-de-cotes.fr/comparateur/rugby/France-Pro-D2-ed537'
 
-competition_rugby_url = [champions_cup_url, top_14_url]
+competition_rugby_url = [champions_cup_url, top_14_url, pro_d2_url]
 
-name_rugby = ['Champions Cup', 'Top 14']
+name_rugby = ['Champions Cup', 'Top 14', 'Pro D2']
 
 # Compétition basketball
 nba_url = 'http://www.comparateur-de-cotes.fr/comparateur/basketball/Etats-Unis-NBA-ed353'
@@ -259,6 +264,7 @@ if sport == 'Football':
     elif lancement :
         bench_final = script_1_N_2(nb_rencontres, tempo_url_foot)
         bench_final.columns = tempo_name_foot
+        bench_final.loc["Moyenne Compétition"] = bench_final.mean()
         st.table(bench_final)
 
 if sport == 'Tennis':
@@ -284,7 +290,7 @@ if sport == 'Tennis':
 
     if lancement and moyenne:
 
-        bench_final = script_1_N_2(nb_rencontres, tempo_url_tennis)
+        bench_final = script_1_2(nb_rencontres, tempo_url_tennis)
         bench_final.columns = tempo_name_tennis
         bench_final['moyenne'] = 1
         for i in range(10):
@@ -303,8 +309,9 @@ if sport == 'Tennis':
         st.table(bench_final)
 
     elif lancement:
-        bench_final = script_1_N_2(nb_rencontres, tempo_url_tennis)
+        bench_final = script_1_2(nb_rencontres, tempo_url_tennis)
         bench_final.columns = tempo_name_tennis
+        bench_final.loc["Moyenne Compétition"] = bench_final.mean()
         st.table(bench_final)
 
 
@@ -352,6 +359,7 @@ if sport == 'Rugby':
     elif lancement:
         bench_final = script_1_N_2(nb_rencontres, tempo_url_rugby)
         bench_final.columns = tempo_name_rugby
+        bench_final.loc["Moyenne Compétition"] = bench_final.mean()
         st.table(bench_final)
 
 if sport == 'Handball':
@@ -398,6 +406,7 @@ if sport == 'Handball':
     elif lancement:
         bench_final = script_1_N_2(nb_rencontres, tempo_url_handball)
         bench_final.columns = tempo_name_handball
+        bench_final.loc["Moyenne Compétition"] = bench_final.mean()
         st.table(bench_final)
 
 
@@ -445,6 +454,7 @@ if sport == 'Hockey':
     elif lancement:
         bench_final = script_1_N_2(nb_rencontres, tempo_url_hockey)
         bench_final.columns = tempo_name_hockey
+        bench_final.loc["Moyenne Compétition"] = bench_final.mean()
         st.table(bench_final)
 
 if sport == "Entrée manuelle (1 compétition)":
@@ -513,7 +523,7 @@ if sport == 'Entrée manuelle (+ d\'1 compétition)' :
                     bench_final.iloc[i, -1] = 0
                 else :
                     bench_final.iloc[i, -1] = "{:.2f}".format((float(bench_final.iloc[i, 0]) + float(bench_final.iloc[i,1]))/diviseur)
-
+            bench_final.loc["Moyenne Compétition"] = bench_final.mean()
             st.table(bench_final)
 
 
@@ -549,7 +559,7 @@ if sport == 'Entrée manuelle (+ d\'1 compétition)' :
                 else :
                     bench_final.iloc[i, -1] = "{:.2f}".format(
                     (float(bench_final.iloc[i, 0]) + float(bench_final.iloc[i, 1]) + float(bench_final.iloc[i,2])) / diviseur)
-
+            bench_final.loc["Moyenne Compétition"] = bench_final.mean()
             st.table(bench_final)
 
 
@@ -591,6 +601,7 @@ if sport == 'Entrée manuelle (+ d\'1 compétition)' :
                     bench_final.iloc[i, -1] = "{:.2f}".format(
                     (float(bench_final.iloc[i, 0]) + float(bench_final.iloc[i, 1]) + float(bench_final.iloc[i,2]) +
                      float(bench_final.iloc[i,3])) / diviseur)
+            bench_final.loc["Moyenne Compétition"] = bench_final.mean()
             st.table(bench_final)
 
     if nb_competition == '5':
@@ -633,6 +644,7 @@ if sport == 'Entrée manuelle (+ d\'1 compétition)' :
                     bench_final.iloc[i, -1] = "{:.2f}".format((float(bench_final.iloc[i, 0]) + float(bench_final.iloc[i, 1])
                                                     + float(bench_final.iloc[i,2]) + float(bench_final.iloc[i,3]) +
                                                            float(bench_final.iloc[i,4])) / diviseur)
+            bench_final.loc["Moyenne Compétition"] = bench_final.mean()
             st.table(bench_final)
 
     if nb_competition == '6':
@@ -681,4 +693,5 @@ if sport == 'Entrée manuelle (+ d\'1 compétition)' :
                                                      + float(bench_final.iloc[i, 2]) + float(bench_final.iloc[i, 3]) +
                                                      float(bench_final.iloc[i, 4]) + float(bench_final.iloc[i,5])) / diviseur)
 
+            bench_final.loc["Moyenne Compétition"] = bench_final.mean()
             st.table(bench_final)
