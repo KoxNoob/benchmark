@@ -121,7 +121,7 @@ betclic = "Betclic"
 
 operateurs = [winamax, unibet, betclic, parions_sports, zebet, pmu, bwin, poker_stars, vbet, netbet]
 
-def script_1_N_2(nb_match, liste_competition):
+def script_1_N_2(nb_match, liste_competition, operateurs):
     global trj_moyenne
     bench_final = pd.DataFrame(index=[i for i in operateurs])
     for sport in liste_competition:
@@ -167,7 +167,7 @@ def script_1_N_2(nb_match, liste_competition):
                     len(bench_final[competition]) - bench_final[competition].isnull().sum()),2)
     return bench_final
 
-def script_1_2(nb_match, liste_competition) :
+def script_1_2(nb_match, liste_competition, operateurs) :
     global trj_moyenne
     bench_final = pd.DataFrame(index=[i for i in operateurs])
     for sport in liste_competition:
@@ -251,12 +251,13 @@ if sport == 'Football':
                 tempo_name_foot.append(tableau.iloc[j,0])
     # Benchmark
     nb_rencontres = st.slider('Combien de rencontres à prendre en compte maximum ?', 0, 20, 2)
+    operateur = st.multiselect('Quel opérateur ?', operateurs, default=operateurs)
     moyenne = st.checkbox('Faire la moyenne par opérateur ?')
     lancement = st.button('Lancez le benchmark')
 
     if lancement and moyenne:
 
-        bench_final = script_1_N_2(nb_rencontres, tempo_url_foot)
+        bench_final = script_1_N_2(nb_rencontres, tempo_url_foot, operateur)
         bench_final.columns = tempo_name_foot
         bench_final['Moyenne Opérateur'] = 1
         for i in range(10):
@@ -275,7 +276,7 @@ if sport == 'Football':
         st.table(bench_final.style.format("{:.2f}"))
 
     elif lancement:
-        bench_final = script_1_N_2(nb_rencontres, tempo_url_foot)
+        bench_final = script_1_N_2(nb_rencontres, tempo_url_foot, operateur)
         bench_final.columns = tempo_name_foot
         st.table(bench_final.style.format("{:.2f}"))
 
@@ -298,12 +299,13 @@ if sport == 'Tennis':
                 tempo_name_tennis.append(tableau.iloc[j, 0])
     # Benchmark
     nb_rencontres = st.slider('Combien de rencontres à prendre en compte maximum ?', 0, 20, 2)
+    operateur = st.multiselect('Quel opérateur ?', operateurs, default=operateurs)
     moyenne = st.checkbox('Faire la moyenne par opérateur ?')
     lancement = st.button('Lancez le benchmark')
 
     if lancement and moyenne:
 
-        bench_final = script_1_2(nb_rencontres, tempo_url_tennis)
+        bench_final = script_1_2(nb_rencontres, tempo_url_tennis, operateur)
         bench_final.columns = tempo_name_tennis
         bench_final['Moyenne Opérateur'] = 1
         for i in range(10):
@@ -322,7 +324,7 @@ if sport == 'Tennis':
         st.table(bench_final.style.format("{:.2f}"))
 
     elif lancement:
-        bench_final = script_1_2(nb_rencontres, tempo_url_tennis)
+        bench_final = script_1_2(nb_rencontres, tempo_url_tennis, operateur)
         bench_final.columns = tempo_name_tennis
         st.table(bench_final.style.format("{:.2f}"))
 
@@ -345,12 +347,13 @@ if sport == 'Rugby':
                 tempo_name_rugby.append(tableau.iloc[j,0])
     # Benchmark
     nb_rencontres = st.slider('Combien de rencontres à prendre en compte maximum ?', 0, 20, 2)
+    operateur = st.multiselect('Quel opérateur ?', operateurs, default=operateurs)
     moyenne = st.checkbox('Faire la moyenne par opérateur ?')
     lancement = st.button('Lancez le benchmark')
 
     if lancement and moyenne:
 
-        bench_final = script_1_N_2(nb_rencontres, tempo_url_rugby)
+        bench_final = script_1_N_2(nb_rencontres, tempo_url_rugby, operateur)
         bench_final.columns = tempo_name_rugby
         bench_final['Moyenne Opérateur'] = 1
         for i in range(10):
@@ -369,7 +372,7 @@ if sport == 'Rugby':
         st.table(bench_final.style.format("{:.2f}"))
 
     elif lancement:
-        bench_final = script_1_N_2(nb_rencontres, tempo_url_rugby)
+        bench_final = script_1_N_2(nb_rencontres, tempo_url_rugby, operateur)
         bench_final.columns = tempo_name_rugby
         st.table(bench_final.style.format("{:.2f}"))
 
@@ -391,12 +394,13 @@ if sport == 'Handball':
                 tempo_name_handball.append(tableau.iloc[j,0])
     # Benchmark
     nb_rencontres = st.slider('Combien de rencontres à prendre en compte maximum ?', 0, 20, 2)
+    operateur = st.multiselect('Quel opérateur ?', operateurs, default=operateurs)
     moyenne = st.checkbox('Faire la moyenne par opérateur ?')
     lancement = st.button('Lancez le benchmark')
 
     if lancement and moyenne:
 
-        bench_final = script_1_N_2(nb_rencontres, tempo_url_handball)
+        bench_final = script_1_N_2(nb_rencontres, tempo_url_handball, operateur)
         bench_final.columns = tempo_name_handball
         bench_final['Moyenne Opérateur'] = 1
         for i in range(10):
@@ -414,7 +418,7 @@ if sport == 'Handball':
 
         st.table(bench_final.style.format("{:.2f}"))
     elif lancement:
-        bench_final = script_1_N_2(nb_rencontres, tempo_url_handball)
+        bench_final = script_1_N_2(nb_rencontres, tempo_url_handball, operateur)
         bench_final.columns = tempo_name_handball
         st.table(bench_final.style.format("{:.2f}"))
 
@@ -437,12 +441,13 @@ if sport == 'Hockey':
                 tempo_name_hockey.append(tableau.iloc[j,0])
     # Benchmark
     nb_rencontres = st.slider('Combien de rencontres à prendre en compte maximum ?', 0, 20, 2)
+    operateur = st.multiselect('Quel opérateur ?', operateurs, default=operateurs)
     moyenne = st.checkbox('Faire la moyenne par opérateur ?')
     lancement = st.button('Lancez le benchmark')
 
     if lancement and moyenne:
 
-        bench_final = script_1_N_2(nb_rencontres, tempo_url_hockey)
+        bench_final = script_1_N_2(nb_rencontres, tempo_url_hockey, operateur)
         bench_final.columns = tempo_name_hockey
         bench_final['Moyenne Opérateur'] = 1
         for i in range(10):
@@ -461,7 +466,7 @@ if sport == 'Hockey':
         st.table(bench_final.style.format("{:.2f}"))
 
     elif lancement:
-        bench_final = script_1_N_2(nb_rencontres, tempo_url_hockey)
+        bench_final = script_1_N_2(nb_rencontres, tempo_url_hockey, operateur)
         bench_final.columns = tempo_name_hockey
         st.table(bench_final.style.format("{:.2f}"))
 
@@ -484,16 +489,17 @@ if sport == "Entrée manuelle (1 compétition)":
     entree_manuelle.append(url)
     nom_competition = st.text_input("Comment s'appelle la compétition ?")
     nb_rencontres = st.slider('Combien de rencontres à prendre en compte maximum ?', 0, 20, 2)
+    operateur = st.multiselect('Quel opérateur ?', operateurs, default=operateurs)
     choix_issue = st.radio('Quelles issues possibles ?', ('1-2', '1-N-2'))
     lancement = st.button('Lancez le benchmark')
 
     if lancement:
 
         if choix_issue == '1-2':
-            bench_final = script_1_2(nb_rencontres, entree_manuelle)
+            bench_final = script_1_2(nb_rencontres, entree_manuelle, operateur)
 
         else:
-            bench_final = script_1_N_2(nb_rencontres, entree_manuelle)
+            bench_final = script_1_N_2(nb_rencontres, entree_manuelle, operateur)
 
         bench_final.columns = [nom_competition]
         st.table(bench_final.style.format("{:.2f}"))
@@ -512,13 +518,14 @@ if sport == 'Entrée manuelle (+ d\'1 compétition)' :
         entree_manuelle.append(url_2)
         nom_competition_2 = st.text_input("Nom Compétition 2")
         nb_rencontres = st.slider('Combien de rencontres à prendre en compte maximum ?', 0, 20, 2)
+        operateur = st.multiselect('Quel opérateur ?', operateurs, default=operateurs)
         choix_issue = st.radio('Quelles issues possibles ?', ('1-2', '1-N-2'))
         lancement = st.button('Lancez le benchmark')
         if lancement:
             if choix_issue == '1-2':
-                bench_final = script_1_2(nb_rencontres, entree_manuelle)
+                bench_final = script_1_2(nb_rencontres, entree_manuelle, operateur)
             else:
-                bench_final = script_1_N_2(nb_rencontres, entree_manuelle)
+                bench_final = script_1_N_2(nb_rencontres, entree_manuelle, operateur)
             bench_final.columns = [nom_competition_1, nom_competition_2]
             bench_final['Moyenne Opérateur'] = 1
 
@@ -547,13 +554,14 @@ if sport == 'Entrée manuelle (+ d\'1 compétition)' :
         entree_manuelle.append(url_3)
         nom_competition_3 = st.text_input("Nom Compétition 3")
         nb_rencontres = st.slider('Combien de rencontres à prendre en compte maximum ?', 0, 20, 2)
+        operateur = st.multiselect('Quel opérateur ?', operateurs, default=operateurs)
         choix_issue = st.radio('Quelles issues possibles ?', ('1-2', '1-N-2'))
         lancement = st.button('Lancez le benchmark')
         if lancement:
             if choix_issue == '1-2':
-                bench_final = script_1_2(nb_rencontres, entree_manuelle)
+                bench_final = script_1_2(nb_rencontres, entree_manuelle, operateur)
             else:
-                bench_final = script_1_N_2(nb_rencontres, entree_manuelle)
+                bench_final = script_1_N_2(nb_rencontres, entree_manuelle, operateur)
             bench_final.columns = [nom_competition_1, nom_competition_2, nom_competition_3]
             bench_final['Moyenne Opérateur'] = 1
 
@@ -586,13 +594,14 @@ if sport == 'Entrée manuelle (+ d\'1 compétition)' :
         entree_manuelle.append(url_4)
         nom_competition_4 = st.text_input("Nom Compétition 4")
         nb_rencontres = st.slider('Combien de rencontres à prendre en compte maximum ?', 0, 20, 2)
+        operateur = st.multiselect('Quel opérateur ?', operateurs, default=operateurs)
         choix_issue = st.radio('Quelles issues possibles ?', ('1-2', '1-N-2'))
         lancement = st.button('Lancez le benchmark')
         if lancement:
             if choix_issue == '1-2':
-                bench_final = script_1_2(nb_rencontres, entree_manuelle)
+                bench_final = script_1_2(nb_rencontres, entree_manuelle, operateur)
             else:
-                bench_final = script_1_N_2(nb_rencontres, entree_manuelle)
+                bench_final = script_1_N_2(nb_rencontres, entree_manuelle, operateur)
             bench_final.columns = [nom_competition_1, nom_competition_2, nom_competition_3,nom_competition_4]
             bench_final['Moyenne Opérateur'] = 1
 
@@ -628,13 +637,14 @@ if sport == 'Entrée manuelle (+ d\'1 compétition)' :
         entree_manuelle.append(url_5)
         nom_competition_5 = st.text_input("Nom Compétition 5")
         nb_rencontres = st.slider('Combien de rencontres à prendre en compte maximum ?', 0, 20, 2)
+        operateur = st.multiselect('Quel opérateur ?', operateurs, default=operateurs)
         choix_issue = st.radio('Quelles issues possibles ?', ('1-2', '1-N-2'))
         lancement = st.button('Lancez le benchmark')
         if lancement:
             if choix_issue == '1-2':
-                bench_final = script_1_2(nb_rencontres, entree_manuelle)
+                bench_final = script_1_2(nb_rencontres, entree_manuelle, operateur)
             else:
-                bench_final = script_1_N_2(nb_rencontres, entree_manuelle)
+                bench_final = script_1_N_2(nb_rencontres, entree_manuelle, operateur)
             bench_final.columns = [nom_competition_1, nom_competition_2, nom_competition_3, nom_competition_4, nom_competition_5]
             bench_final['Moyenne Opérateur'] = 1
 
@@ -673,13 +683,14 @@ if sport == 'Entrée manuelle (+ d\'1 compétition)' :
         entree_manuelle.append(url_6)
         nom_competition_6 = st.text_input("Nom Compétition 6")
         nb_rencontres = st.slider('Combien de rencontres à prendre en compte maximum ?', 0, 20, 2)
+        operateur = st.multiselect('Quel opérateur ?', operateurs, default=operateurs)
         choix_issue = st.radio('Quelles issues possibles ?', ('1-2', '1-N-2'))
         lancement = st.button('Lancez le benchmark')
         if lancement:
             if choix_issue == '1-2':
-                bench_final = script_1_2(nb_rencontres, entree_manuelle)
+                bench_final = script_1_2(nb_rencontres, entree_manuelle, operateur)
             else:
-                bench_final = script_1_N_2(nb_rencontres, entree_manuelle)
+                bench_final = script_1_N_2(nb_rencontres, entree_manuelle, operateur)
             bench_final.columns = [nom_competition_1, nom_competition_2, nom_competition_3, nom_competition_4,
                                    nom_competition_5, nom_competition_6]
 
