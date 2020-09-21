@@ -37,7 +37,7 @@ bresil_campeonato_url = 'http://www.comparateur-de-cotes.fr/comparateur/football
 mexique_primera_A_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Mexico-Primera-A-ed109'
 chili_primera_division_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Chili-Primera-Division-ed174'
 equateur_serie_A_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Equateur-Serie-A-ed148'
-copa_libertadores_url = 'comparateur-de-cotes.fr/comparateur/football/Copa-Libertadores-ed737'
+copa_libertadores_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Copa-Libertadores-ed737'
 maroc_botola_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Maroc-Botola-Pro-ed558'
 
 
