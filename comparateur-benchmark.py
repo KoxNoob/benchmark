@@ -39,6 +39,37 @@ chili_primera_division_url = 'http://www.comparateur-de-cotes.fr/comparateur/foo
 equateur_serie_A_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Equateur-Serie-A-ed148'
 copa_libertadores_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Copa-Libertadores-ed737'
 maroc_botola_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Maroc-Botola-Pro-ed558'
+allemagne_supercoupe_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Allemagne-SuperCoupe-ed1234'
+bielorussie_division1_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Bi%C3%A9lorussie-Div.-1-ed227'
+bosnie_premierleague_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Bosnie-Premier-Liga-ed324'
+bulgarie_parvaliga_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Bulgarie-Parva-Liga-ed55'
+chypre_division1_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Chypre-Division-1-ed65'
+croatie_division1_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Croatie-Division-1-ed62'
+espagne_Liga2_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Espagne-LaLiga-2-ed47'
+estonie_premiumliiga_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Estonie-Premium-Liiga-ed199'
+finlande_veikkausliiga_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Finlande-Veikkausliiga-ed29'
+grece_superleague_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Gr%C3%A8ce-Superleague-ed19'
+hongrie_nb1_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Hongrie-NB-1-ed141'
+ilesferoe_division1_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Iles-Feroe-Division-1-ed1485'
+irlande_premierleague_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Irlande-Premier-League-ed112'
+islande_premierleague_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Islande-Premier-League-ed1123'
+israel_premierleague_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Israel-Premier-League-ed75'
+italie_serieb_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Italie-Serie-B-ed14'
+lettonie_virsliga_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Lettonie-Virsliga-ed253'
+malte_premierdivision_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Malte-Premier-Division-ed281'
+norvege_eliteserien_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Norv%C3%A8ge-Eliteserien-ed56'
+paysdegalles_premierleague_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/P.-de-Galles--Premier-League-ed137'
+pologne_ekstraklasa_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Pologne-Ekstraklasa-ed30'
+portugal_liga2_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Portugal-Liga-2-ed53'
+republiquetcheque_premierleague_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Rep.-Tch%C3%A8que-1-Liga-ed45'
+roumanie_liga1_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Roumanie-Liga-1-ed54'
+serbie_superliga_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Serbie-Superliga-ed220'
+slovaque_liga1_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Slovaquie-Liga-1-ed36'
+slovenie_premierleague_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Slov%C3%A9nie-Division-1-ed35'
+suede_allsvenskan_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Su%C3%A8de-Allsvenskan-ed28'
+japon_jleague_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Japon-J-League-ed34'
+paraguay_primeradivision_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Paraguay-Primera-Division-ed250'
+coree_kleague_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Cor%C3%A9e-du-Sud-K-League-ed152'
 
 
 competition_foot_url = [ligue_1_url, ligue_2_url, liga_url, serie_A_url, bundesliga_url, premier_league_url,
@@ -46,13 +77,28 @@ competition_foot_url = [ligue_1_url, ligue_2_url, liga_url, serie_A_url, bundesl
                         super_league_suisse, liga_nos, bundesliga_2_url, championship_url, mls_url, premier_league_russie_url,
                         premier_league_ukraine_url, eredivisie_pb_url, super_lig_turquie_url, bundesliga_autriche_url,
                         superligue_danemark_url, ecosse_premierleague_url, bresil_campeonato_url, mexique_primera_A_url,
-                        chili_primera_division_url, equateur_serie_A_url, copa_libertadores_url, maroc_botola_url]
+                        chili_primera_division_url, equateur_serie_A_url, copa_libertadores_url, maroc_botola_url,
+                        allemagne_supercoupe_url, bielorussie_division1_url, bosnie_premierleague_url, bulgarie_parvaliga_url,
+                        chypre_division1_url, croatie_division1_url, espagne_Liga2_url, estonie_premiumliiga_url,
+                        finlande_veikkausliiga_url, grece_superleague_url, hongrie_nb1_url, ilesferoe_division1_url,
+                        irlande_premierleague_url, islande_premierleague_url, israel_premierleague_url, italie_serieb_url,
+                        lettonie_virsliga_url, malte_premierdivision_url, norvege_eliteserien_url, paysdegalles_premierleague_url,
+                        pologne_ekstraklasa_url, portugal_liga2_url, republiquetcheque_premierleague_url, roumanie_liga1_url,
+                        serbie_superliga_url, slovaque_liga1_url, slovenie_premierleague_url, suede_allsvenskan_url,
+                        japon_jleague_url, paraguay_primeradivision_url,coree_kleague_url]
 
 name_foot = ['Ligue 1', 'Ligue 2', 'Liga', 'Serie_A', 'Bundesliga', 'Premier League', 'Champions League', 'Europa League',
              'Carabao Cup', 'Coupe d\'Allemagne', 'Jupiler League', 'Super League Suisse','Liga Nos', 'Bundesliga 2',
              'Championship', 'MLS', 'Premier League Russie', 'Premier League Ukraine', 'Eredivisie Pays-Bas', 'Super Lig \
              Turquie', 'Bundesliga Autriche', 'Superligue Danemark', 'Ecosse Premierleague', 'Bresil Campeonato',
-             'Mexique Primera A', 'Chili Primera Division', 'Equateur Serie A', 'Copa Libertadores', 'Maroc Botola']
+             'Mexique Primera A', 'Chili Primera Division', 'Equateur Serie A', 'Copa Libertadores', 'Maroc Botola',
+             'SuperCoupe Allemagne', "Biélorussie Division 1", "Bosnie Premier League", 'Bulgarie Parvaliga', 'Chypre \
+             Division 1', 'Croatie Division 1', 'Liga 2 Espagne', 'Estonie Premium Liga', 'Finlande Liga', 'Grece SuperLeague',
+             'Hongrie L1', 'Iles Feroes Division 1', 'Irlande PremierLeague', 'Islande Premier League', 'Israel Premier League',
+             'Italie Serie B', 'Lettonie Virsliga', 'Malte Premier Division', 'Norvège Elite', 'Pays de Galles Premier League',
+             'Pologne Division 1', 'Portugal Liga 2', 'République Tchèque Premier League', 'Roumanie Liga 1', 'Serbie SuperLiga',
+             'Slovaquie Liga 1', 'Slovénie Premier League', 'Suède Liga', 'Japon JLeague', 'Paraguay Primera Division',
+             'Corée K-League']
 
 # Compétition tennis
 us_open_hommes_url = 'http://www.comparateur-de-cotes.fr/comparateur/tennis/US-Open-(Hommes)-ed846'
@@ -89,10 +135,11 @@ nba_url = 'http://www.comparateur-de-cotes.fr/comparateur/basketball/Etats-Unis-
 # Compétition handball
 lidl_starligue_url = 'http://www.comparateur-de-cotes.fr/comparateur/handball/France-Division-1-ed268'
 liga_asobal_url = 'http://www.comparateur-de-cotes.fr/comparateur/handball/Espagne-Liga-Asobal-ed267'
+europe_ldcf_url = 'http://www.comparateur-de-cotes.fr/comparateur/handball/Ligue-des-Champions-(F)-ed265'
 
-competition_handball_url = [lidl_starligue_url, liga_asobal_url]
+competition_handball_url = [lidl_starligue_url, liga_asobal_url, europe_ldcf_url]
 
-name_hand = ['Lidl Starligue', 'Liga Asobal']
+name_hand = ['Lidl Starligue', 'Liga Asobal', 'Ligue des champions féminine']
 
 
 # Compétition hockey
@@ -101,10 +148,12 @@ khl_url = 'http://www.comparateur-de-cotes.fr/comparateur/hockey-sur-glace/KHL-R
 rep_tcheque_extraliga_url = 'http://www.comparateur-de-cotes.fr/comparateur/hockey-sur-glace/Rep.-Tch%C3%A8que-Extraliga-ed380'
 belarus_OL_url = 'http://www.comparateur-de-cotes.fr/comparateur/hockey-sur-glace/Belarus-OL-ed512'
 suede_elitserien_url = 'http://www.comparateur-de-cotes.fr/comparateur/hockey-sur-glace/Su%C3%A8de-Elitserien-ed392'
+slovaquie_extraliga_url = 'http://www.comparateur-de-cotes.fr/comparateur/hockey-sur-glace/Slovaquie-Extraliga-ed394'
 
-competition_hockey_url = [nhl_url, khl_url, rep_tcheque_extraliga_url, belarus_OL_url, suede_elitserien_url]
+competition_hockey_url = [nhl_url, khl_url, rep_tcheque_extraliga_url, belarus_OL_url, suede_elitserien_url,
+                          slovaquie_extraliga_url]
 
-name_hockey = ['NHL', 'KHL', 'Rep. Tcheque Extraliga', 'Belarus OL', 'Suede Elitserien']
+name_hockey = ['NHL', 'KHL', 'Rep. Tcheque Extraliga', 'Belarus OL', 'Suede Elitserien', 'Slovaquie Extraliga']
 
 
 # Opérateurs
