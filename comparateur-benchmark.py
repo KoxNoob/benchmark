@@ -165,6 +165,7 @@ def script_1_N_2(nb_match, liste_competition, operateurs):
     for competition in bench_final.columns:
         bench_final.loc['Moyenne Compétition', competition] = round(((bench_final[competition]).sum()) / (
                     len(bench_final[competition]) - bench_final[competition].isnull().sum()),2)
+    bench_final = bench_final.astype(np.float64)
     return bench_final
 
 def script_1_2(nb_match, liste_competition, operateurs) :
@@ -212,6 +213,7 @@ def script_1_2(nb_match, liste_competition, operateurs) :
         bench_final.loc['Moyenne Compétition', competition] = round(
             (bench_final[competition]).sum() / (
                         len(bench_final[competition]) - bench_final[competition].isnull().sum()), 2)
+    bench_final = bench_final.astype(np.float64)
 
     return bench_final
 
@@ -272,7 +274,7 @@ if sport == 'Football':
                 bench_final.iloc[i, -1] = 0
             else:
                 bench_final.iloc[i, -1] = "{:.2f}".format(total_moyenne / diviseur)
-
+        bench_final = bench_final.astype(np.float64)
         st.table(bench_final.style.format("{:.2f}"))
 
     elif lancement:
