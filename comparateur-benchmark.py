@@ -112,13 +112,15 @@ rome_wta_url = 'http://www.comparateur-de-cotes.fr/comparateur/tennis/Rome-(Prem
 hambourg_url = 'http://www.comparateur-de-cotes.fr/comparateur/tennis/Hambourg-(500-Series)-ed837'
 strasbourg_url = 'http://www.comparateur-de-cotes.fr/comparateur/tennis/Strasbourg-(Intl.-Events)-ed885'
 roland_garros_hommes_url = 'http://www.comparateur-de-cotes.fr/comparateur/tennis/Roland-Garros-(Hommes)-ed825'
+roland_garros_femmes_url = 'http://www.comparateur-de-cotes.fr/comparateur/tennis/Roland-Garros-(Femmes)-ed832'
 
 
 competition_tennis_url = [us_opendf_url, us_open_dh_url, us_open_femmes_url, us_open_hommes_url, kitzbuhel_url,
-                          istanbul_url, rome_atp_url, rome_wta_url, hambourg_url, strasbourg_url, roland_garros_hommes_url]
+                          istanbul_url, rome_atp_url, rome_wta_url, hambourg_url, strasbourg_url, roland_garros_hommes_url,
+                          roland_garros_femmes_url]
 
 name_tennis = ['US Open DF', 'US Open DH', 'US Open Femmes', 'US Open Hommes', 'Kitzbuhel', 'Istanbul', 'Rome ATP',
-               'Rome WTA', 'Hambourg', 'Strasbourg', 'Roland Garros Hommes']
+               'Rome WTA', 'Hambourg', 'Strasbourg', 'Roland Garros Hommes', 'Roland Garros Femmes']
 
 # Compétition rugby
 champions_cup_url = 'http://www.comparateur-de-cotes.fr/comparateur/rugby/Champions-Cup-ed569'
