@@ -113,14 +113,17 @@ hambourg_url = 'http://www.comparateur-de-cotes.fr/comparateur/tennis/Hambourg-(
 strasbourg_url = 'http://www.comparateur-de-cotes.fr/comparateur/tennis/Strasbourg-(Intl.-Events)-ed885'
 roland_garros_hommes_url = 'http://www.comparateur-de-cotes.fr/comparateur/tennis/Roland-Garros-(Hommes)-ed825'
 roland_garros_femmes_url = 'http://www.comparateur-de-cotes.fr/comparateur/tennis/Roland-Garros-(Femmes)-ed832'
+roland_garros_doubles_hommes = 'http://www.comparateur-de-cotes.fr/comparateur/tennis/Roland-Garros-(Doubles-H)-ed1143'
+roland_garros_doubles_femmes = 'http://www.comparateur-de-cotes.fr/comparateur/tennis/Roland-Garros-(Doubles-F)-ed1141'
 
 
 competition_tennis_url = [us_opendf_url, us_open_dh_url, us_open_femmes_url, us_open_hommes_url, kitzbuhel_url,
                           istanbul_url, rome_atp_url, rome_wta_url, hambourg_url, strasbourg_url, roland_garros_hommes_url,
-                          roland_garros_femmes_url]
+                          roland_garros_femmes_url, roland_garros_doubles_hommes, roland_garros_doubles_femmes]
 
 name_tennis = ['US Open DF', 'US Open DH', 'US Open Femmes', 'US Open Hommes', 'Kitzbuhel', 'Istanbul', 'Rome ATP',
-               'Rome WTA', 'Hambourg', 'Strasbourg', 'Roland Garros Hommes', 'Roland Garros Femmes']
+               'Rome WTA', 'Hambourg', 'Strasbourg', 'Roland Garros Hommes', 'Roland Garros Femmes', 'Roland Garros DH',
+               'Roland Garros DF']
 
 # Compétition rugby
 champions_cup_url = 'http://www.comparateur-de-cotes.fr/comparateur/rugby/Champions-Cup-ed569'
@@ -133,6 +136,7 @@ name_rugby = ['Champions Cup', 'Top 14', 'Pro D2']
 
 # Compétition basketball
 nba_url = 'http://www.comparateur-de-cotes.fr/comparateur/basketball/Etats-Unis-NBA-ed353'
+
 
 # Compétition handball
 lidl_starligue_url = 'http://www.comparateur-de-cotes.fr/comparateur/handball/France-Division-1-ed268'
@@ -147,15 +151,16 @@ name_hand = ['Lidl Starligue', 'Liga Asobal', 'Ligue des champions féminine']
 # Compétition hockey
 nhl_url = 'http://www.comparateur-de-cotes.fr/comparateur/hockey-sur-glace/Etats-Unis-NHL-ed378'
 khl_url = 'http://www.comparateur-de-cotes.fr/comparateur/hockey-sur-glace/KHL-Russie-Superligue-ed395'
+ligue_magnus_url = 'http://www.comparateur-de-cotes.fr/comparateur/hockey-sur-glace/France-Ligue-Magnus-ed544'
 rep_tcheque_extraliga_url = 'http://www.comparateur-de-cotes.fr/comparateur/hockey-sur-glace/Rep.-Tch%C3%A8que-Extraliga-ed380'
 belarus_OL_url = 'http://www.comparateur-de-cotes.fr/comparateur/hockey-sur-glace/Belarus-OL-ed512'
 suede_elitserien_url = 'http://www.comparateur-de-cotes.fr/comparateur/hockey-sur-glace/Su%C3%A8de-Elitserien-ed392'
 slovaquie_extraliga_url = 'http://www.comparateur-de-cotes.fr/comparateur/hockey-sur-glace/Slovaquie-Extraliga-ed394'
 
-competition_hockey_url = [nhl_url, khl_url, rep_tcheque_extraliga_url, belarus_OL_url, suede_elitserien_url,
+competition_hockey_url = [nhl_url, khl_url, ligue_magnus_url, rep_tcheque_extraliga_url, belarus_OL_url, suede_elitserien_url,
                           slovaquie_extraliga_url]
 
-name_hockey = ['NHL', 'KHL', 'Rep. Tcheque Extraliga', 'Belarus OL', 'Suede Elitserien', 'Slovaquie Extraliga']
+name_hockey = ['NHL', 'KHL', 'Ligue Magnus', 'Rep. Tcheque Extraliga', 'Belarus OL', 'Suede Elitserien', 'Slovaquie Extraliga']
 
 
 # Opérateurs
