@@ -70,10 +70,12 @@ suede_allsvenskan_url = 'http://www.comparateur-de-cotes.fr/comparateur/football
 japon_jleague_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Japon-J-League-ed34'
 paraguay_primeradivision_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Paraguay-Primera-Division-ed250'
 coree_kleague_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Cor%C3%A9e-du-Sud-K-League-ed152'
+coupe_de_france_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Coupe-de-France-ed317'
+CAN_url = "http://www.comparateur-de-cotes.fr/comparateur/football/Coupe-d" + "'" +"Afrique-des-Nations-ed983"
 
 
-competition_foot_url = [ligue_1_url, ligue_2_url, liga_url, serie_A_url, bundesliga_url, premier_league_url,
-                            champions_league_url, europa_league_url, coupe_allemagne_url, carabao_cup_url, jupiler_league,
+competition_foot_url = [CAN_url, ligue_1_url, ligue_2_url, liga_url, serie_A_url, bundesliga_url, premier_league_url,
+                            champions_league_url, europa_league_url, coupe_de_france_url, coupe_allemagne_url, carabao_cup_url, jupiler_league,
                         super_league_suisse, liga_nos, bundesliga_2_url, championship_url, mls_url, premier_league_russie_url,
                         premier_league_ukraine_url, eredivisie_pb_url, super_lig_turquie_url, bundesliga_autriche_url,
                         superligue_danemark_url, ecosse_premierleague_url, bresil_campeonato_url, mexique_primera_A_url,
@@ -87,8 +89,8 @@ competition_foot_url = [ligue_1_url, ligue_2_url, liga_url, serie_A_url, bundesl
                         serbie_superliga_url, slovaque_liga1_url, slovenie_premierleague_url, suede_allsvenskan_url,
                         japon_jleague_url, paraguay_primeradivision_url,coree_kleague_url]
 
-name_foot = ['Ligue 1', 'Ligue 2', 'Liga', 'Serie_A', 'Bundesliga', 'Premier League', 'Champions League', 'Europa League',
-             'Carabao Cup', 'Coupe d\'Allemagne', 'Jupiler League', 'Super League Suisse','Liga Nos', 'Bundesliga 2',
+name_foot = ['CAN','Ligue 1', 'Ligue 2', 'Liga', 'Serie_A', 'Bundesliga', 'Premier League', 'Champions League', 'Europa League',
+             'Coupe de France','Carabao Cup', 'Coupe d\'Allemagne', 'Jupiler League', 'Super League Suisse','Liga Nos', 'Bundesliga 2',
              'Championship', 'MLS', 'Premier League Russie', 'Premier League Ukraine', 'Eredivisie Pays-Bas', 'Super Lig \
              Turquie', 'Bundesliga Autriche', 'Superligue Danemark', 'Ecosse Premierleague', 'Bresil Campeonato',
              'Mexique Primera A', 'Chili Primera Division', 'Equateur Serie A', 'Copa Libertadores', 'Maroc Botola',
@@ -113,14 +115,18 @@ hambourg_url = 'http://www.comparateur-de-cotes.fr/comparateur/tennis/Hambourg-(
 strasbourg_url = 'http://www.comparateur-de-cotes.fr/comparateur/tennis/Strasbourg-(Intl.-Events)-ed885'
 roland_garros_hommes_url = 'http://www.comparateur-de-cotes.fr/comparateur/tennis/Roland-Garros-(Hommes)-ed825'
 roland_garros_femmes_url = 'http://www.comparateur-de-cotes.fr/comparateur/tennis/Roland-Garros-(Femmes)-ed832'
+open_australie_hommes_url = "http://www.comparateur-de-cotes.fr/comparateur/tennis/Open-d'Australie-(Hommes)-ed711"
+open_australie_femmes_url = "http://www.comparateur-de-cotes.fr/comparateur/tennis/Open-d'Australie-(Femmes)-ed710"
+
 
 
 competition_tennis_url = [us_opendf_url, us_open_dh_url, us_open_femmes_url, us_open_hommes_url, kitzbuhel_url,
                           istanbul_url, rome_atp_url, rome_wta_url, hambourg_url, strasbourg_url, roland_garros_hommes_url,
-                          roland_garros_femmes_url]
+                          roland_garros_femmes_url, open_australie_hommes_url, open_australie_femmes_url]
 
 name_tennis = ['US Open DF', 'US Open DH', 'US Open Femmes', 'US Open Hommes', 'Kitzbuhel', 'Istanbul', 'Rome ATP',
-               'Rome WTA', 'Hambourg', 'Strasbourg', 'Roland Garros Hommes', 'Roland Garros Femmes']
+               'Rome WTA', 'Hambourg', 'Strasbourg', 'Roland Garros Hommes', 'Roland Garros Femmes', "Open d'Australie H",
+               "Open d'Australie F"]
 
 # Compétition rugby
 champions_cup_url = 'http://www.comparateur-de-cotes.fr/comparateur/rugby/Champions-Cup-ed569'
@@ -167,10 +173,11 @@ poker_stars = "PokerStars Sports"
 pmu = "PMU"
 parions_sports = "ParionsWeb"
 netbet = "NetBet"
-bwin = "Bwin"
 betclic = "Betclic"
 
-operateurs = [winamax, unibet, betclic, parions_sports, zebet, pmu, bwin, poker_stars, vbet, netbet]
+operateurs = [winamax, unibet, betclic, parions_sports, zebet, pmu, poker_stars, vbet, netbet]
+
+
 
 def script_1_N_2(nb_match, liste_competition, operateurs):
     global trj_moyenne
@@ -284,7 +291,7 @@ def choix_final_url(initial, final, url):
     return final
 
 
-sport = st.sidebar.radio('Sports', ('Football', 'Tennis', 'Rugby', 'Handball', 'Hockey', 'Entrée manuelle (1 compétition)',
+sport = st.sidebar.radio('Sports', ('Football', 'RTP of the day', 'Tennis', 'Rugby', 'Handball', 'Hockey', 'Entrée manuelle (1 compétition)',
                                     'Entrée manuelle (+ d\'1 compétition)'))
 
 if sport == 'Football':
@@ -332,6 +339,84 @@ if sport == 'Football':
         bench_final = script_1_N_2(nb_rencontres, tempo_url_foot, operateur)
         bench_final.columns = tempo_name_foot
         st.table(bench_final.style.format("{:.2f}"))
+
+if sport == 'RTP of the day':
+
+    st.markdown(
+        "<h3 style='text-align: center; color: grey; size = 0'>RTP of the day</h3>",
+        unsafe_allow_html=True)
+
+    nb_rencontres = st.slider('How many events?', 0, 20, 2)
+    tableau = pd.DataFrame(list(zip(name_foot, competition_foot_url)), columns=['Selection', 'Url'])
+    options = st.multiselect('Which competition?', name_foot)
+    tempo_url_foot = []
+
+    for item in options:
+        for j in range(len(tableau)):
+            if item == tableau.iloc[j,0]:
+                tempo_url_foot.append(tableau.iloc[j,1])
+
+    lancement = st.button('Launch')
+    if lancement:
+        for url in tempo_url_foot:
+
+            page = requests.get(url, headers=headers)
+            soup = BeautifulSoup(page.content, 'html.parser')
+
+            bench_final = pd.DataFrame(index=[i for i in operateurs], columns=["1", "X", "2", "TRJ"])
+
+            teams = []
+            events = []
+            cote = []
+            trj_totaux = []
+            indice = 0
+
+            for k in range(nb_rencontres*2):
+                try:
+                    team = soup.find_all('a', {'class': "otn"})[k].get_text()
+                    teams.append(team)
+
+                    time.sleep(0.1)
+                except:
+                    break
+            for a in range(int(len(teams) / 2)):
+                events.append(teams[2*a] + " - " + teams[2*a+1])
+
+            for j in range(nb_rencontres):
+                for ope in operateurs:
+                    try:
+                        item = soup.find_all('tr', {'title': "Parier avec " +ope})[j].get_text()
+                        item = item.strip().replace('\n', '')
+
+                        item = item.split(' ')
+                        item[:] = (i for i in item if i != '')
+                        for l in range(len(item)):
+                            cote.append(float(item[l]))
+
+                        time.sleep(0.1)
+                    except:
+                        break
+
+            for a in range(int(len(cote) / 3)):
+                trj_totaux.append(round((1 / ((1 / (float(cote[3 * a]))) + (1 / (float(cote[3 * a + 1]))) + (
+                        1 / (float(cote[3 * a + 2])))) * 100), 2))
+            #trj_totaux = "{:.2f}".format(trj_totaux)
+
+            for event in events:
+                st.markdown(
+                    "<h4 style='text-align: center; color: grey; size = 0'>" + event + "</h4>",
+                    unsafe_allow_html=True)
+
+                for i in range(len(operateurs)):
+                    try:
+                        for j in range(3):
+                            bench_final.iloc[i,j] = cote[3*indice+j]
+                        bench_final.iloc[i,3] = trj_totaux[indice]
+                        indice = indice + 1
+                    except:
+                        break
+
+                st.table(bench_final.style.format("{:.2f}"))
 
 
 if sport == 'Tennis':
