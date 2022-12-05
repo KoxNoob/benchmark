@@ -72,10 +72,11 @@ paraguay_primeradivision_url = 'http://www.comparateur-de-cotes.fr/comparateur/f
 coree_kleague_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Cor%C3%A9e-du-Sud-K-League-ed152'
 coupe_de_france_url = 'http://www.comparateur-de-cotes.fr/comparateur/football/Coupe-de-France-ed317'
 CAN_url = "http://www.comparateur-de-cotes.fr/comparateur/football/Coupe-d" + "'" +"Afrique-des-Nations-ed983"
+fa_cup_url = "http://www.comparateur-de-cotes.fr/comparateur/football/Angleterre-FA-Cup-ed22"
 
 
 competition_foot_url = [CAN_url, ligue_1_url, ligue_2_url, liga_url, serie_A_url, bundesliga_url, premier_league_url,
-                            champions_league_url, europa_league_url, coupe_de_france_url, coupe_allemagne_url, carabao_cup_url, jupiler_league,
+                            champions_league_url, europa_league_url, coupe_de_france_url, fa_cup_url, coupe_allemagne_url, carabao_cup_url, jupiler_league,
                         super_league_suisse, liga_nos, bundesliga_2_url, championship_url, mls_url, premier_league_russie_url,
                         premier_league_ukraine_url, eredivisie_pb_url, super_lig_turquie_url, bundesliga_autriche_url,
                         superligue_danemark_url, ecosse_premierleague_url, bresil_campeonato_url, mexique_primera_A_url,
@@ -90,7 +91,7 @@ competition_foot_url = [CAN_url, ligue_1_url, ligue_2_url, liga_url, serie_A_url
                         japon_jleague_url, paraguay_primeradivision_url,coree_kleague_url]
 
 name_foot = ['CAN','Ligue 1', 'Ligue 2', 'Liga', 'Serie_A', 'Bundesliga', 'Premier League', 'Champions League', 'Europa League',
-             'Coupe de France','Carabao Cup', 'Coupe d\'Allemagne', 'Jupiler League', 'Super League Suisse','Liga Nos', 'Bundesliga 2',
+             'Coupe de France','FA Cup','Carabao Cup', 'Coupe d\'Allemagne', 'Jupiler League', 'Super League Suisse','Liga Nos', 'Bundesliga 2',
              'Championship', 'MLS', 'Premier League Russie', 'Premier League Ukraine', 'Eredivisie Pays-Bas', 'Super Lig \
              Turquie', 'Bundesliga Autriche', 'Superligue Danemark', 'Ecosse Premierleague', 'Bresil Campeonato',
              'Mexique Primera A', 'Chili Primera Division', 'Equateur Serie A', 'Copa Libertadores', 'Maroc Botola',
