@@ -117,16 +117,20 @@ roland_garros_hommes_url = 'http://www.comparateur-de-cotes.fr/comparateur/tenni
 roland_garros_femmes_url = 'http://www.comparateur-de-cotes.fr/comparateur/tennis/Roland-Garros-(Femmes)-ed832'
 open_australie_hommes_url = "http://www.comparateur-de-cotes.fr/comparateur/tennis/Open-d'Australie-(Hommes)-ed711"
 open_australie_femmes_url = "http://www.comparateur-de-cotes.fr/comparateur/tennis/Open-d'Australie-(Femmes)-ed710"
+atp_cordoba_url = "http://www.comparateur-de-cotes.fr/comparateur/tennis/Cordoba-(250-Series)-ed2204"
+atp_pune_url = "http://www.comparateur-de-cotes.fr/comparateur/tennis/Pune-(250-Series)-ed2194"
+atp_montpellier_url = "http://www.comparateur-de-cotes.fr/comparateur/tennis/Montpellier-(250-Series)-ed1735"
 
 
 
 competition_tennis_url = [us_opendf_url, us_open_dh_url, us_open_femmes_url, us_open_hommes_url, kitzbuhel_url,
                           istanbul_url, rome_atp_url, rome_wta_url, hambourg_url, strasbourg_url, roland_garros_hommes_url,
-                          roland_garros_femmes_url, open_australie_hommes_url, open_australie_femmes_url]
+                          roland_garros_femmes_url, open_australie_hommes_url, open_australie_femmes_url, atp_cordoba_url,
+                          atp_pune_url, atp_montpellier_url]
 
 name_tennis = ['US Open DF', 'US Open DH', 'US Open Femmes', 'US Open Hommes', 'Kitzbuhel', 'Istanbul', 'Rome ATP',
                'Rome WTA', 'Hambourg', 'Strasbourg', 'Roland Garros Hommes', 'Roland Garros Femmes', "Open d'Australie H",
-               "Open d'Australie F"]
+               "Open d'Australie F", "ATP Cordoba", "ATP Pune", "ATP Montpellier"]
 
 # Compétition rugby
 champions_cup_url = 'http://www.comparateur-de-cotes.fr/comparateur/rugby/Champions-Cup-ed569'
